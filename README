@@ -1,0 +1,20 @@
+********************************************************************************
+**                                  CANN                                      **
+********************************************************************************
+Cikliniai tinklai pagrįsti nenutrūkstamu signalų interpretavimu. Priešingai nei 
+paprasti ANN čia vienam signalui pereiti per tinklą gali prireikti daugiau nei 
+vieno perrinkimo. Tai yra lėtesnis būdas, tačiau atmintis šiuose tinkluose eg-
+zistuoja dėl jų sandaros. Ir uždelsto veikimo.
+
+Tikslai: Per vasarą parašyti pirmą veikiantį tinklą ir jį išbandyti su paprasta 
+simuliacija.
+
+Simuliacijos aprašas:
+	CANN tinklo valdomas kvadratėlis egzistuoja gradientiškai palankioje
+	aplinkoje. Aplinkos palankumo koeficientas duodama kaip vienintelė įves-
+	tis. Išvestis -- vienas skaičius, teigiamas arba neigiamas, greitis
+	kuriuo kvadratėlis juda pasaulyje. (pasaulis 1 dimensijos.) Pritaikius 
+	genetinį algoritmą išvesti veislę, kuri laikytųsi palankiuose taškuose.
+	(Čia pagal vienalasčių elgesį jiem nepalankioje terpėje.)
+	Išsivystymo taškai skaičiuojami pagal laiką praleistą palankioj vietoj, 
+	laiką praleistą blogoje erdvėje, judrumą blogoje erdvėje.
