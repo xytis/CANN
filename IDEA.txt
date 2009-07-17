@@ -1,0 +1,18 @@
+
+This is the rough idea of cyclic artificial neural network.
+
+As in standart models of ANN's the structure is straight: input->hidden layer->output.
+Here every neuron is an input to itself.
+Input is introduced to a finite set of neurons.
+Then "thinking" takes place. The data cycles the network for a known amount of time.
+Afterwards output is taken away. This is done by reading another finite set of neurons.
+
+For example, a network of four neurons:
+
+A        B
+
+
+C        D
+
+The input is given to A and C. Then thinking step runs. Data is passed to all neurons (including itself). When the data has been send, each neuron sums the data, and "remembers" it for the next step.
+Each step slightly alters the thresholds and the signal sending penalties.
