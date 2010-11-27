@@ -1,0 +1,10 @@
+#Git ignore file
+bin/
+obj/
+dumps/
+*.save
+moc_*
+*.dat
+*.o
+*~
+.*
