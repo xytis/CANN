@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1290891811 source:/home/xytis/Documents/Programing/Projects/CANN/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL.h>
+	"include/cBrain.h"
+
+1290890996 /home/xytis/Documents/Programing/Projects/CANN/include/cBrain.h
+	<iostream>
+
+1290889549 source:/home/xytis/Documents/Programing/Projects/CANN/src/cBrain.cpp
+	"../include/cBrain.h"
+
