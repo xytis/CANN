@@ -12,3 +12,39 @@
 1290889549 source:/home/xytis/Documents/Programing/Projects/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
+1290971341 source:/home/xytis/Documents/Programing/CANN/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL.h>
+	"include/cBrain.h"
+	"include/cNeuron.h"
+
+1290963412 /home/xytis/Documents/Programing/CANN/include/cBrain.h
+	<iostream>
+	"../include/cNeuron.h"
+
+1290934443 source:/home/xytis/Documents/Programing/CANN/src/cBrain.cpp
+	"../include/cBrain.h"
+
+1290971219 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
+	<iostream>
+	<string>
+	<sstream>
+	<cassert>
+	<map>
+	"../include/exception.h"
+
+1290971226 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp
+	"../include/cNeuron.h"
+
+1290963702 source:/home/xytis/Documents/Programing/CANN/src/cSensor.cpp
+	"../include/cSensor.h"
+
+1290963616 /home/xytis/Documents/Programing/CANN/include/cSensor.h
+	"../include/exception.h"
+
+1290968423 /home/xytis/Documents/Programing/CANN/include/exception.h
+	<exception>
+	<string>
+

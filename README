@@ -15,6 +15,58 @@ Simuliacijos aprašas:
 	tis. Išvestis -- vienas skaičius, teigiamas arba neigiamas, greitis
 	kuriuo kvadratėlis juda pasaulyje. (pasaulis 1 dimensijos.) Pritaikius 
 	genetinį algoritmą išvesti veislę, kuri laikytųsi palankiuose taškuose.
-	(Čia pagal vienalasčių elgesį jiem nepalankioje terpėje.)
+	(Čia pagal vienaląsčių elgesį jiem nepalankioje terpėje.)
 	Išsivystymo taškai skaičiuojami pagal laiką praleistą palankioj vietoj, 
 	laiką praleistą blogoje erdvėje, judrumą blogoje erdvėje.
+Paturbintas aprašas:
+  Vieną vakarą, sėdėdamas sugalvojau kad viskas gali vyktį šešiakampių plokštelių
+  pasaulyje. Tai atneštų privalumų "gyvybės" organizavimui, bei jos gebėjimams.
+  Taigi dabartinis tikslas sukurti CANN tinklą, prie kurio prisijungtų klasikiniai
+  ANN tinklai (septyni input ir vienas output) ir kuris gebėtų sulipti su kitu(ais)
+  CANN tinkliukais. T.y. gyvūnėlis (pavadinkime jį hex'u) būdamas ant laukelio su 6
+  kraštinėm (daa, šešiakampis =]) "jaučia" (gauna įvestį) apie 6 kaimyninių laukelių
+  ir apie laukelio ant kurio stovi būkles (papraščiausiu atveju 1 double maisto kiekį).
+  Iš čia 7 input'ai, kurie apdoroja raw įvestį ir pritaiko ją CANN tinklui. Tada CANN
+  tinkle turi imti cirkuliuoti nykstama (arba ne... čia dar mistika) mintis. Tos minties
+  atgarsius output'o tinkliukas turi paversti 2d vektoriaus koordinatėmis, kurias
+  naudotume gyvūno pajudėjimui įforminti. Esant dviems hex'ams šalia, jų sensoriai
+  (ANN tinklai) konvertuojasi į tiltą tarp dviejų CANN. Mintys iš vieno tinklo turi
+  persiduoti į kitą. (Net neįsivaizduoju ką tai atneš, bet turėtų būti įdomu.
+      Na, pradžiai tai turbūt gyvūnėliai atšoks vienas nuo kito lyg nudeginti...)
+  Kaip skaičiuojamas gyvūnėlių lifespan:
+    hex'as turi pradinį food rezervą.
+    su laiku food mažėja.
+    NEJUDANT food galima gauti iš laukelio ant kurio stovi.
+    susijungus su kitu gyvūnėliu food mažėja lėčiau (čia kad susijungimas būtų gerai)
+    
+  Ilgiausiai išgyvenęs gyvūnėlis tampa bandos alpha =] ir pasidaugina. Su nedideliu random'u.
+  Tai vat. Bandom. Rašom. Gal išeis. =]
+
+********************************************************************************
+**                                 cNeuron                                    **
+********************************************************************************
+  Trumpai apie cNeuron:
+  Tai yra neuronas.
+  Vat. Viskas aišku?? Ne?
+  Na tada: cNeuron gali būti sužadintas arba ne. Kai jis yra sužadintas, jis
+  emituoja signalus į prie jo prijungtus neuronus ir juos žadina.
+  Sužadinimas gali būti stačiakampio tipo (ala if sakinys) arba ne.
+  Šiuo atveju naudojama sigmoid funkcija, kuri leidžia švelnesnius perėjimus ir
+  tarpines būsenas.
+  Kai neuronas gauna signalą iš kito neurono, jis jį sumuoja. Suma ir bus tas 
+  skaičius, kuris apspręs ar neuronas kitą ciklą bus sužadintas ar ne.
+  Vertės: signalai būna tarp 0 ir 1. Jei suma viršija 1, tai kai perkošiama su 
+  sigmoid vertė vėl tampa tarp 0 ir 1.
+
+  sigmoid(x) = 1/(1+exp(-x)) =]
+
+  cNeuron veikia dviem etapais:
+    send/get  --  siunčia visiem signalus
+    flip      --  perverčia gautą sumą per sigmoid ir išsisaugo kaip aktyvacijos vertę.
+
+  Šios simuliacijos tikslu pritaikyti std::map, sąryšiams tarp ID, fizinio adreso ir 
+  efektinių jungties konstantų (čia tipo sinapsės pralaidumas) laikyti.
+
+  Jei dar kas neaišku, o domina nerealiai -- skaitykit parašytą sourc'ą ir rašykit man.
+
+  Vytis <xytis2000@gmail.com>

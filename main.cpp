@@ -10,6 +10,7 @@
 #endif
 
 #include "include/cBrain.h"
+#include "include/cNeuron.h"
 
 int main ( int argc, char** argv )
 {
@@ -18,6 +19,25 @@ int main ( int argc, char** argv )
     bob.debug_print_signal();
     bob.debug_print_threshold();
 
+    std::map<unsigned,CANN::cNeuron*> map;
+
+    CANN::cNeuron * one, * two;
+
+    one = new CANN::cNeuron(1);
+    two = new CANN::cNeuron(2);
+
+    one->link(map);
+    two->link(map);
+    map[1]->set_genome(std::string("1 1 2 1 1 2 2"));
+    map[2]->set_genome(std::string("2 3 4 1 4 2 3"));
+
+    one->pair((*two));
+    delete two;
+
+    std::cout << one->get_genome() << std::endl;
+
+
+/*
     // initialize SDL video
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -96,5 +116,6 @@ int main ( int argc, char** argv )
 
     // all is well ;)
     printf("Exited cleanly\n");
+    */
     return 0;
 }

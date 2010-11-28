@@ -2,6 +2,7 @@
 #define CBRAIN_H_INCLUDED
 
 #include <iostream>
+#include "../include/cNeuron.h"
 
 namespace CANN
 {
