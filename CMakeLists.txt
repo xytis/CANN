@@ -1,12 +1,25 @@
-project(CANN)
-
 cmake_minimum_required(VERSION 2.6)
 
-add_subdirectory(src)
-include_directories(${CANN_SOURCE_DIR}/include)
+project(CANN)
 
-set(CANN_SOURCES src/cBrain.cpp src/cNeuron.cpp src/cSensor.cpp main.cpp)
+include_directories(
+    ${CANN_SOURCE_DIR}/include
+)
 
-set(BIN_DIR bin/Debug/)
+set(
+    CANN_SOURCES
+    src/cBrain.cpp
+    src/cNeuron.cpp
+    src/cSensor.cpp
+    main.cpp
+)
 
-add_executable(${BIN_DIR}CANN ${CANN_SOURCES})
+set(
+    CMAKE_RUNTIME_OUTPUT_DIRECTORY
+    ${CANN_SOURCE_DIR}/bin/Debug/
+)
+
+add_executable(
+    CANN
+    ${CANN_SOURCES}
+)
