@@ -27,12 +27,13 @@
 1290934443 source:/home/xytis/Documents/Programing/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
-1290971219 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
+1291048651 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
 	<iostream>
 	<string>
 	<sstream>
 	<cassert>
 	<map>
+	<cmath>
 	"../include/exception.h"
 
 1290971226 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp

@@ -15,8 +15,6 @@ namespace CANN
 {
     struct sNeuronCore
     {
-        unsigned    m_owners;
-
         double      m_threshold;
         double      m_stiffness;
         double      m_signal;
@@ -36,12 +34,29 @@ namespace CANN
 
         public:
             cNeuron (unsigned);
+
+            /**
+            *   Gives neurons a place to be =]
+            *   Actualy it registers ID address pair of given neuron
+            *   \param map[ID]=address
+            */
             void link (std::map<unsigned,cNeuron*> &);
 
-
+            /**
+            *   Getter m_ID()
+            *   \return m_ID
+            */
             unsigned    ID() {return m_ID;};
 
+            /**
+            *   Returns genome in formated string
+            *   \return genome
+            */
             std::string get_genome();
+            /**
+            *   Loads genome from formated string.
+            *   \param genome
+            */
             void set_genome (std::string);
 
             /**
@@ -60,10 +75,10 @@ namespace CANN
 
             /**
             *   Pairing of two(or more) neurons.
+            *   Alows one-way data flow from this to given neuron
             *   \param cNeuron to pair with
             */
             void        pair(cNeuron &);
-            sNeuronCore * respond_to_pair();
             /**
             *   Do not delete single neurons, it causes shitload of problems
             */

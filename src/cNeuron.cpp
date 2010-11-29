@@ -9,7 +9,9 @@ namespace CANN
     connections(NULL),
     reference(NULL)
     {
-
+#ifdef DEBUG
+        std::cout << "Neuron ID: " << ID << " address: " << this << std::endl;
+#endif //DEBUG
     }
 
     void cNeuron::
@@ -26,7 +28,6 @@ namespace CANN
         unsigned id;
         double t;
         m_core = new sNeuronCore;
-        m_core->m_owners = 1;
         sin >> id;
         if (id != m_ID)
             throw exception::IDmissmatch("ID while loading genome does not match!");
@@ -81,25 +82,13 @@ namespace CANN
     void cNeuron::
     pair(cNeuron & brother)
     {
-        if (m_core)
-            delete m_core;
-        m_core = brother.respond_to_pair();
-        m_core->m_owners++;
-    }
-
-    sNeuronCore * cNeuron::
-    respond_to_pair()
-    {
-        return m_core;
+        (*connections)[&brother] = 1;
     }
 
     cNeuron::
     ~cNeuron()
     {
-        if (m_core->m_owners == 1)
-            delete m_core;
-        else
-            m_core->m_owners--;
+        delete m_core;
         delete connections;
         reference->erase(m_ID);
     }
