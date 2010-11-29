@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 2.6)
 
 project(CANN)
 
-include_directories(${CANN_SOURCE_DIR}/include)
+include_directories(
+    ${CANN_SOURCE_DIR}/include
+)
 
 set(
     CANN_SOURCES
@@ -17,4 +19,7 @@ set(
     ${CANN_SOURCE_DIR}/bin/Debug/
 )
 
-add_executable(CANN ${CANN_SOURCES})
+add_executable(
+    CANN
+    ${CANN_SOURCES}
+)
