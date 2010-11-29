@@ -1,5 +1,6 @@
 #Git ignore file
 !.gitignore
+build/
 bin/
 obj/
 dumps/
