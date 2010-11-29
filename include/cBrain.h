@@ -2,6 +2,7 @@
 #define CBRAIN_H_INCLUDED
 
 #include <iostream>
+#include <map>
 #include "../include/cNeuron.h"
 
 namespace CANN
@@ -9,14 +10,11 @@ namespace CANN
     class cBrain
     {
         private:
-            double  **m_threshold;
-            double  **m_signal;
             unsigned  m_size;
+            std::map<unsigned,cNeuron*> * neurons;
         public:
-            cBrain(unsigned);
+            cBrain(std::istream &);
 
-            void debug_print_threshold(std::ostream & out = std::cout);
-            void debug_print_signal(std::ostream & out = std::cout);
 
             ~cBrain() {};
     };

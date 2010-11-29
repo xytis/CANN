@@ -41,6 +41,7 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/cBrain.h" />
 		<Unit filename="include/cNeuron.h" />
+		<Unit filename="include/cRandomPool.h" />
 		<Unit filename="include/cSensor.h" />
 		<Unit filename="include/exception.h" />
 		<Unit filename="include/sigma.h" />

@@ -11,28 +11,37 @@
 
 #include "include/cBrain.h"
 #include "include/cNeuron.h"
+#include "include/cRandomPool.h"
 
 int main ( int argc, char** argv )
 {
 
-    CANN::cBrain bob(4);
-    bob.debug_print_signal();
-    bob.debug_print_threshold();
-
     std::map<unsigned,CANN::cNeuron*> map;
 
-    CANN::cNeuron * one, * two;
+    CANN::cNeuron * one, * two, *three;
 
     one = new CANN::cNeuron(1);
     two = new CANN::cNeuron(2);
+    three = new CANN::cNeuron(3);
 
-    one->link(map);
-    two->link(map);
-    map[1]->set_genome(std::string("1 1 2 1 1 2 2"));
-    map[2]->set_genome(std::string("2 3 4 1 4 2 3"));
+    one->init(0.5, 10);
+    two->init(0.5, 10);
+    three->init(0.5, 10);
 
-    one->pair((*two));
-    delete two;
+    one->register_to(map);
+    two->register_to(map);
+    three->register_to(map);
+
+    one->link(*one, 1);
+    one->link(*two, 1);
+    one->link(*three, 1);
+    two->link(*one, 1);
+    two->link(*two, 1);
+    two->link(*three, 1);
+    three->link(*three, 0.5);
+
+    CANN::cRandomPool R;
+    one->mutate_links(R);
 
     std::cout << one->get_genome() << std::endl;
 

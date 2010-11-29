@@ -2,27 +2,27 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="include/cBrain.h" open="1" top="0" tabpos="2">
-		<Cursor position="106" topLine="0" />
+		<Cursor position="382" topLine="0" />
 	</File>
-	<File name="include/cNeuron.h" open="1" top="1" tabpos="7">
-		<Cursor position="356" topLine="44" />
+	<File name="include/cNeuron.h" open="1" top="0" tabpos="7">
+		<Cursor position="2133" topLine="24" />
 	</File>
 	<File name="include/cSensor.h" open="1" top="0" tabpos="4">
-		<Cursor position="682" topLine="18" />
+		<Cursor position="682" topLine="6" />
 	</File>
 	<File name="include/exception.h" open="1" top="0" tabpos="6">
-		<Cursor position="596" topLine="2" />
+		<Cursor position="503" topLine="2" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="466" topLine="66" />
+		<Cursor position="813" topLine="29" />
 	</File>
 	<File name="src/cBrain.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="32" topLine="0" />
+		<Cursor position="48" topLine="0" />
 	</File>
 	<File name="src/cNeuron.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="604" topLine="0" />
+		<Cursor position="2165" topLine="61" />
 	</File>
 	<File name="src/cSensor.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="56" topLine="0" />
+		<Cursor position="56" topLine="28" />
 	</File>
 </CodeBlocks_layout_file>

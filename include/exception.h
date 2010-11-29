@@ -6,6 +6,22 @@
 
 namespace exception
 {
+    class custom: public std::exception
+    {
+        private:
+            std::string m_reason;
+        public:
+            custom(std::string reason) throw()
+            {
+                m_reason = reason;
+            }
+            const char* what() const throw()
+            {
+                return m_reason.c_str();
+            }
+            ~custom () throw () {}
+    };
+
     class NetworksIncompatible: public std::exception
     {
         private:

@@ -10,6 +10,7 @@
 #include <cmath>
 
 #include "../include/exception.h"
+#include "../include/cRandomPool.h"
 
 namespace CANN
 {
@@ -33,20 +34,34 @@ namespace CANN
             std::map<unsigned,cNeuron*> * reference;
 
         public:
-            cNeuron (unsigned);
+                        cNeuron (unsigned);
 
             /**
             *   Gives neurons a place to be =]
             *   Actualy it registers ID address pair of given neuron
             *   \param map[ID]=address
             */
-            void link (std::map<unsigned,cNeuron*> &);
+            void        register_to (std::map<unsigned,cNeuron*> &);
 
             /**
             *   Getter m_ID()
             *   \return m_ID
             */
             unsigned    ID() {return m_ID;};
+
+            /**
+            *   Sets threshold and stiffness
+            */
+            void        init(double, double);
+
+            /**
+            *   Creates an active link with a weight
+            */
+            void        link (cNeuron &, double);
+            /**
+            *   Deletes a link
+            */
+            void        unlink (cNeuron &);
 
             /**
             *   Returns genome in formated string
@@ -57,7 +72,19 @@ namespace CANN
             *   Loads genome from formated string.
             *   \param genome
             */
-            void set_genome (std::string);
+            void        set_genome (std::string);
+
+            /**
+            *   Mutates all links
+            *   \param cRandomPool instance
+            */
+            void        mutate_links (cRandomPool &);
+
+            /**
+            *   Mutates core values
+            *   \param cRandomPool instance
+            */
+            void        mutate_core (cRandomPool &);
 
             /**
             *   Receives signals
@@ -80,9 +107,14 @@ namespace CANN
             */
             void        pair(cNeuron &);
             /**
+            *   Breaking pairing with another neuron
+            *   \param cNeuron to unpair from
+            */
+            void        unpair(cNeuron &);
+            /**
             *   Do not delete single neurons, it causes shitload of problems
             */
-            ~cNeuron();
+                        ~cNeuron();
 
     };
 };
