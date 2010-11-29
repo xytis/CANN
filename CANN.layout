@@ -5,7 +5,7 @@
 		<Cursor position="106" topLine="0" />
 	</File>
 	<File name="include/cNeuron.h" open="1" top="1" tabpos="7">
-		<Cursor position="356" topLine="3" />
+		<Cursor position="356" topLine="44" />
 	</File>
 	<File name="include/cSensor.h" open="1" top="0" tabpos="4">
 		<Cursor position="682" topLine="18" />
@@ -14,13 +14,13 @@
 		<Cursor position="596" topLine="2" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="466" topLine="51" />
+		<Cursor position="466" topLine="66" />
 	</File>
 	<File name="src/cBrain.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="32" topLine="0" />
 	</File>
-	<File name="src/cNeuron.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="1765" topLine="79" />
+	<File name="src/cNeuron.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="604" topLine="0" />
 	</File>
 	<File name="src/cSensor.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="56" topLine="0" />

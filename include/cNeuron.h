@@ -7,6 +7,7 @@
 #include <sstream>
 #include <cassert>
 #include <map>
+#include <cmath>
 
 #include "../include/exception.h"
 

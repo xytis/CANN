@@ -74,7 +74,7 @@ namespace CANN
     void cNeuron::
     flip()
     {
-        m_core->m_signal = 1/(1+exp(-(m_core->m_incoming-m_threshold)*m_stifness));
+        m_core->m_signal = 1/(1+exp(-(m_core->m_incoming-m_core->m_threshold)*m_core->m_stiffness));
         m_core->m_incoming = 0;
     }
 
