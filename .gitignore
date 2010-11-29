@@ -1,5 +1,11 @@
 #Git ignore file
 !.gitignore
+
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.cmake
+
 build/
 bin/
 obj/

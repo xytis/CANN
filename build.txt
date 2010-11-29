@@ -1,0 +1,7 @@
+Siulau laikytis codeblocks direktorijų struktūros:
+
+SRC = src/
+INCLUDE = include/
+BUILD_TO = bin/{BUILD_TYPE}/
+
+šiuo atveju hardcodinau Debug BUILD_TYPE, kai pramoksim su CMake, galėsim geriau pavaryti.
