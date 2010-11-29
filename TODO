@@ -1,0 +1,16 @@
+
+1. Kol kas reikia sugalvoti ir padaryti saugų ir efektyvų būdą dalintis neuronais tarp
+cBrain ir cSensor (ar cMover ar cBrain). Kitaip tariant, kaip padaryti kad neuronas būtų
+pasiekiamas iš abiejų objektų, tačiau jo atliekami veiksmai nesidubliuotų.
+Gal nenaudoti to paties neurono? O tik sudaryti sąsają tarp jų su kažkokia jungtimi?
+Tai atrodytų įgyvendinama =]
+
+2. Sukurti ir išbandyti cBrain. Ji turi sukti skaičiavimus žingsniais. Ji turi turėti nuorodas
+į cSensor(cBridge? cMover), kurie turbūt turi būti vienos klasės palikuonys, pvz cCanal.
+
+3. Sukurti likusius gabalus.
+4. Patestuoti kaip sukasi skaičiukai =]
+
+5. Imtis pačio gyvūnėlio =]
+
+6. Imtis SDL aplinkos gyvūnėliui veistis.
