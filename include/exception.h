@@ -53,7 +53,6 @@ namespace exception
             }
             ~IDmissmatch () throw () {}
     };
-
 };
 
 #endif // EXCEPTION_H_INCLUDED
