@@ -15,8 +15,9 @@
 
 int main ( int argc, char** argv )
 {
-
+/*
     std::map<unsigned,CANN::cNeuron*> map;
+    std::map<unsigned,CANN::cNeuron*> map2;
 
     CANN::cNeuron * one, * two, *three;
 
@@ -30,22 +31,25 @@ int main ( int argc, char** argv )
 
     one->register_to(map);
     two->register_to(map);
-    three->register_to(map);
+    three->register_to(map2);
 
     one->link(*one, 1);
     one->link(*two, 1);
-    one->link(*three, 1);
     two->link(*one, 1);
     two->link(*two, 1);
-    two->link(*three, 1);
     three->link(*three, 0.5);
+
+    one->pair(*three);
+    three->pair(*one);
 
     CANN::cRandomPool R;
     one->mutate_links(R);
 
     std::cout << one->get_genome() << std::endl;
-
-
+*/
+    CANN::cRandomPool R;
+    CANN::cBrain bob(R, 4);
+    bob.genome(std::cout);
 /*
     // initialize SDL video
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )

@@ -62,7 +62,9 @@ namespace CANN
 
         std::map<cNeuron *,double>::iterator iter;
         for( iter = (*connections).begin(); iter != (*connections).end(); ++iter ) {
-            sout << (iter->first)->ID() << ' ' << iter->second << ' ';
+            //Only if neuron is registered at same parenting object.
+            if ((*reference)[(iter->first)->ID()] == iter->first)
+                sout << (iter->first)->ID() << ' ' << iter->second << ' ';
         }
         return sout.str();
     }

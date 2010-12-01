@@ -12,7 +12,7 @@
 1290889549 source:/home/xytis/Documents/Programing/Projects/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
-1291070250 source:/home/xytis/Documents/Programing/CANN/main.cpp
+1291199162 source:/home/xytis/Documents/Programing/CANN/main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<SDL/SDL.h>
@@ -21,7 +21,7 @@
 	"include/cNeuron.h"
 	"include/cRandomPool.h"
 
-1291066219 /home/xytis/Documents/Programing/CANN/include/cBrain.h
+1291199169 /home/xytis/Documents/Programing/CANN/include/cBrain.h
 	<iostream>
 	<map>
 	"../include/cNeuron.h"
@@ -29,7 +29,7 @@
 1291066218 source:/home/xytis/Documents/Programing/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
-1291069980 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
+1291104150 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
 	<iostream>
 	<string>
 	<sstream>
@@ -39,18 +39,18 @@
 	"../include/exception.h"
 	"../include/cRandomPool.h"
 
-1291070269 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp
+1291197737 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp
 	"../include/cNeuron.h"
 
 1290963702 source:/home/xytis/Documents/Programing/CANN/src/cSensor.cpp
 	"../include/cSensor.h"
 
-1290963616 /home/xytis/Documents/Programing/CANN/include/cSensor.h
+1291070419 /home/xytis/Documents/Programing/CANN/include/cSensor.h
 	"../include/exception.h"
 
-1291068733 /home/xytis/Documents/Programing/CANN/include/exception.h
+1291104026 /home/xytis/Documents/Programing/CANN/include/exception.h
 	<exception>
 	<string>
 
-1291070294 /home/xytis/Documents/Programing/CANN/include/cRandomPool.h
+1291199242 /home/xytis/Documents/Programing/CANN/include/cRandomPool.h
 
