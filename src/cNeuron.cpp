@@ -38,6 +38,8 @@ namespace CANN
         std::stringstream sin(genome);
         unsigned id;
         double t;
+        if (m_core)
+            delete m_core;
         m_core = new sNeuronCore;
         sin >> id;
         if (id != m_ID)
@@ -61,9 +63,12 @@ namespace CANN
         sout << m_core->m_stiffness << ' ';
 
         std::map<cNeuron *,double>::iterator iter;
-        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter ) {
+        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter )
+        {
             //Only if neuron is registered at same parenting object.
-            if ((*reference)[(iter->first)->ID()] == iter->first)
+            //Fail. This method creates the neurons at the reference with bad ID
+            //if ((*reference)[(iter->first)->ID()] == iter->first)
+            if (reference->find(iter->first->ID())->second == iter->first)
                 sout << (iter->first)->ID() << ' ' << iter->second << ' ';
         }
         return sout.str();
@@ -73,7 +78,8 @@ namespace CANN
     mutate_links(cRandomPool & R)
     {
         std::map<cNeuron *,double>::iterator iter;
-        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter ) {
+        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter )
+        {
             iter->second *= R.mutation();
         }
     }
@@ -95,7 +101,8 @@ namespace CANN
     send()
     {
         std::map<cNeuron *,double>::iterator iter;
-        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter ) {
+        for( iter = (*connections).begin(); iter != (*connections).end(); ++iter )
+        {
             (iter->first)->get(iter->second * m_core->m_signal);
         }
     }
@@ -111,7 +118,7 @@ namespace CANN
     link(cNeuron & to, double weight)
     {
         assert(reference);
-        if ((*reference)[to.ID()] == &to)
+        if (reference->find(to.ID())->second == &to)
             (*connections)[&to] = weight;
         else
             throw exception::custom("Neuron is not in reference array, perhaps its from other network?");
@@ -133,6 +140,14 @@ namespace CANN
     unpair(cNeuron & brother)
     {
         (*connections).erase(&brother);
+    }
+
+    std::string cNeuron::
+    core_dump()
+    {
+        std::stringstream out;
+        out << "ID: " << std::setw(4) << m_ID << " in: " << std::setw(6) << m_core->m_incoming << " act: " << std::setw(6) << m_core->m_signal << " | ";
+        return out.str();
     }
 
     cNeuron::

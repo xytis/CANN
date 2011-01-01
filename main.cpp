@@ -9,9 +9,18 @@
 #include <SDL/SDL.h>
 #endif
 
+#include <iostream>
+#include <fstream>
+
 #include "include/cBrain.h"
+#include "include/cSensor.h"
+#include "include/cMover.h"
 #include "include/cNeuron.h"
 #include "include/cRandomPool.h"
+
+#include "include/cMainControler.h"
+#include "include/cMenuState.h"
+#include "include/cRenderState.h"
 
 int main ( int argc, char** argv )
 {
@@ -47,9 +56,81 @@ int main ( int argc, char** argv )
 
     std::cout << one->get_genome() << std::endl;
 */
+/*
+    std::ofstream fout("file.txt");
     CANN::cRandomPool R;
-    CANN::cBrain bob(R, 4);
+    CANN::cBrain bob(R, 4, "bob");
     bob.genome(std::cout);
+    bob.genome(fout);
+
+    fout.close();
+
+    std::ifstream fin("file.txt");
+    CANN::cBrain blue(fin);
+    blue.genome(std::cout);
+
+    fin.close();
+
+    fout.open("file.txt");
+
+    CANN::cSensor antenna(R, std::vector<unsigned>(3,3), "antenna");
+    antenna.genome(std::cout);
+    antenna.genome(fout);
+
+    fout.close();
+    fin.open("file.txt");
+    CANN::cSensor eye(fin);
+    eye.genome(std::cout);
+*/
+/*
+    CANN::cRandomPool R;
+    CANN::cBrain bob(R, 4, "bob");
+    std::vector<unsigned>layout(1,2);
+    CANN::cSensor nose(R, layout, "nose");
+    CANN::cMover legs(R, layout, "legs");
+    std::vector<CANN::cNeuron *> nose_plug;
+    nose_plug.push_back(bob.at(0));
+    nose_plug.push_back(bob.at(1));
+    nose.bind(nose_plug);
+    std::vector<CANN::cNeuron *> leg_plug;
+    leg_plug.push_back(bob.at(2));
+    leg_plug.push_back(bob.at(3));
+    legs.bind(leg_plug);
+    nose.genome(std::cout);
+    legs.genome(std::cout);
+    std::cout << legs;
+
+    std::vector<double> IO(2,2);
+
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << "exchange" << std::endl;
+        nose.exchange(IO);
+        std::cout << nose;
+        std::cout << bob;
+        std::cout << legs;
+        std::cout << "send/flip" << std::endl;
+        nose.send();
+        bob.send();
+        legs.send();
+        nose.flip();
+        bob.flip();
+        legs.flip();
+        legs.exchange(IO);
+        std::cout << nose;
+        std::cout << bob;
+        std::cout << legs;
+        std::cout << IO.at(0) << ' ' << IO.at(1) << std::endl;
+    }
+*/
+    Interface::cMainControler * program = Interface::cMainControler::create();
+    program->init("hello", 640, 480, 32);
+    Interface::cMenuState * menu = Interface::cMenuState::create(program);
+    Interface::cRenderState * render = Interface::cRenderState::create(program);
+    program->push(render);
+    program->run();
+    program->clean_up();
+
 /*
     // initialize SDL video
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )

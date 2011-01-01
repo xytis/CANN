@@ -1,5 +1,5 @@
-#ifndef CSENSOR_H_INCLUDED
-#define CSENSOR_H_INCLUDED
+#ifndef CMOVER_H_INCLUDED
+#define CMOVER_H_INCLUDED
 
 #include <vector>
 #include <iostream>
@@ -12,7 +12,7 @@
 
 namespace CANN
 {
-    class cSensor : public cPeripheral
+    class cMover : public cPeripheral
     {
         private:
             std::vector<unsigned> m_layout;
@@ -23,18 +23,18 @@ namespace CANN
             std::map<unsigned,cNeuron*> * neurons;
         public:
             /**
-            *   Constructor, which creates cSensor from absolute zero.
+            *   Constructor, which creates cMover from absolute zero.
             *   \param Random generator
             *   \param array of size
             *   \param string ID
             */
-            cSensor(cRandomPool &, const std::vector<unsigned> & layout, std::string ID);
+            cMover(cRandomPool &, const std::vector<unsigned> & layout, std::string ID);
 
             /**
             *   Constructor, which loads created cSensor from stream.
             *   \param Formated stream with genomes and stuff.
             */
-            cSensor(std::istream &);
+            cMover(std::istream &);
 
             /**
             *   getter for cNeuron references
@@ -57,30 +57,30 @@ namespace CANN
             std::string  ID() {return m_ID;};
 
             /**
-            *   Binds last array of neurons to brain neurons
+            *   Binds first array of neurons to brain neurons
             *   \param array of neurons, to whom it should bind.
             *   \throw exception::NetworksIncompatible
             */
-            void    bind_output(const std::vector<cNeuron *> &);
+            void    bind_input(const std::vector<cNeuron *> &);
 
             /**
             *   Dummy function for better compability
             */
-            void    bind(const std::vector<cNeuron *> & V) {bind_output(V);};
+            void    bind(const std::vector<cNeuron *> & V) {bind_input(V);};
 
             /**
-            *   Gets input from outside, and feeds it to neurons.
+            *   Sends output outside.
             *   \throw exception::custom
             */
-            void    input(const std::vector<double> &);
+            void output(std::vector<double> &);
 
             /**
             *   Function for exchanging information with outer world
             */
-            void exchange(std::vector<double> & in)
+            void exchange(std::vector<double> & out)
             {
-                if (!in.empty())
-                    input (in);
+                if (!out.empty())
+                    output(out);
             };
 
             /**
@@ -101,4 +101,5 @@ namespace CANN
 
 };
 
-#endif // CSENSOR_H_INCLUDED
+
+#endif // CMOVER_H_INCLUDED

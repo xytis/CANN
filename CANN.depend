@@ -12,45 +12,130 @@
 1290889549 source:/home/xytis/Documents/Programing/Projects/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
-1291199162 source:/home/xytis/Documents/Programing/CANN/main.cpp
+1293908717 source:/home/xytis/Documents/Programing/CANN/main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<SDL/SDL.h>
 	<SDL/SDL.h>
+	<iostream>
+	<fstream>
 	"include/cBrain.h"
+	"include/cSensor.h"
+	"include/cMover.h"
 	"include/cNeuron.h"
 	"include/cRandomPool.h"
+	"include/cMainControler.h"
+	"include/cMenuState.h"
+	"include/cRenderState.h"
 
-1291199169 /home/xytis/Documents/Programing/CANN/include/cBrain.h
+1293545503 /home/xytis/Documents/Programing/CANN/include/cBrain.h
 	<iostream>
 	<map>
 	"../include/cNeuron.h"
+	"../include/cNeuralNetwork.h"
 
-1291066218 source:/home/xytis/Documents/Programing/CANN/src/cBrain.cpp
+1293545499 source:/home/xytis/Documents/Programing/CANN/src/cBrain.cpp
 	"../include/cBrain.h"
 
-1291104150 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
+1293545485 /home/xytis/Documents/Programing/CANN/include/cNeuron.h
 	<iostream>
 	<string>
 	<sstream>
 	<cassert>
 	<map>
 	<cmath>
+	<iomanip>
 	"../include/exception.h"
 	"../include/cRandomPool.h"
 
-1291197737 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp
+1293548677 source:/home/xytis/Documents/Programing/CANN/src/cNeuron.cpp
 	"../include/cNeuron.h"
 
-1290963702 source:/home/xytis/Documents/Programing/CANN/src/cSensor.cpp
+1293548265 source:/home/xytis/Documents/Programing/CANN/src/cSensor.cpp
 	"../include/cSensor.h"
 
-1291070419 /home/xytis/Documents/Programing/CANN/include/cSensor.h
+1293545495 /home/xytis/Documents/Programing/CANN/include/cSensor.h
+	<vector>
+	<iostream>
+	<string>
+	<map>
 	"../include/exception.h"
+	"../include/cNeuron.h"
+	"../include/cPeripheral.h"
 
-1291104026 /home/xytis/Documents/Programing/CANN/include/exception.h
+1293702915 /home/xytis/Documents/Programing/CANN/include/exception.h
 	<exception>
 	<string>
 
 1291199242 /home/xytis/Documents/Programing/CANN/include/cRandomPool.h
+
+1293443753 /home/xytis/Documents/Programing/CANN/include/cNeuralNetwork.h
+	"../include/cNeuron.h"
+
+1293524590 /home/xytis/Documents/Programing/CANN/include/cPeripheral.h
+	"../include/cNeuralNetwork.h"
+
+1293545806 source:/home/xytis/Documents/Programing/CANN/src/cMover.cpp
+	"../include/cMover.h"
+
+1293545490 /home/xytis/Documents/Programing/CANN/include/cMover.h
+	<vector>
+	<iostream>
+	<string>
+	<map>
+	"../include/exception.h"
+	"../include/cNeuron.h"
+	"../include/cPeripheral.h"
+
+1293879175 /home/xytis/Documents/Programing/CANN/include/cMainControler.h
+	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+	<string>
+	<stack>
+	"../include/exception.h"
+	"../include/cProgramState.h"
+	"../include/cResourceManager.h"
+
+1293759888 source:/home/xytis/Documents/Programing/CANN/src/cMainControler.cpp
+	"../include/cMainControler.h"
+
+1293798892 /home/xytis/Documents/Programing/CANN/include/cProgramState.h
+
+1293879135 /home/xytis/Documents/Programing/CANN/include/cResourceManager.h
+	"../include/exception.h"
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	<SDL/SDL_ttf.h>
+	<string>
+	<map>
+	<iostream>
+
+1293878679 source:/home/xytis/Documents/Programing/CANN/src/cMenuState.cpp
+	"../include/cMenuState.h"
+
+1293877908 /home/xytis/Documents/Programing/CANN/include/cMenuState.h
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	"../include/sdl_video.h"
+	"../include/cMainControler.h"
+
+1293609472 /home/xytis/Documents/Programing/CANN/include/sdl_video.h
+	"SDL/SDL.h"
+
+1293879219 source:/home/xytis/Documents/Programing/CANN/src/cResourceManager.cpp
+	"../include/cResourceManager.h"
+
+1293877954 source:/home/xytis/Documents/Programing/CANN/src/sdl_video.cpp
+	"../include/sdl_video.h"
+
+1293887170 source:/home/xytis/Documents/Programing/CANN/src/cRenderState.cpp
+	"../include/cRenderState.h"
+
+1293887094 /home/xytis/Documents/Programing/CANN/include/cRenderState.h
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	"../include/sdl_video.h"
+	"../include/cMainControler.h"
 

@@ -1,9 +1,9 @@
-#include "../include/cSensor.h"
+#include "../include/cMover.h"
 
 namespace CANN
 {
-    cSensor::
-    cSensor(cRandomPool & R, const std::vector<unsigned> & layout, std::string ID):
+    cMover::
+    cMover(cRandomPool & R, const std::vector<unsigned> & layout, std::string ID):
     m_layout(layout),
     m_size(0),
     m_ID(ID),
@@ -44,8 +44,8 @@ namespace CANN
         }
     }
 
-    cSensor::
-    cSensor(std::istream & in):
+    cMover::
+    cMover(std::istream & in):
     m_layout(),
     m_size(0),
     m_ID(""),
@@ -59,7 +59,7 @@ namespace CANN
             if (label == "TYPE")
             {
                 in >> label;
-                if (label != "cSensor")
+                if (label != "cMover")
                     throw exception::custom("Wrong type of stream data!");
             }
             if (label == "ID")
@@ -113,10 +113,10 @@ namespace CANN
     }
 
 
-    void cSensor::
+    void cMover::
     genome(std::ostream & out)
     {
-        out << "TYPE\t\tcSensor" << std::endl;
+        out << "TYPE\t\tcMover" << std::endl;
         out << "ID\t\t" << m_ID << std::endl;
         out << "LAYOUT\t\t" << m_layout.size() << '\t';
         for (unsigned u = 0; u < m_layout.size(); u++)
@@ -131,29 +131,29 @@ namespace CANN
         }
     }
 
-    void cSensor::
-    bind_output(const std::vector<cNeuron *> & array)
+    void cMover::
+    bind_input(const std::vector<cNeuron *> & array)
     {
-        if (array.size() != m_output.size())
+        if (array.size() != m_input.size())
             throw exception::NetworksIncompatible("Neuron plug size missmatch");
         for (unsigned u = 0; u < array.size(); u++)
         {
-            m_output.at(u)->pair(*array.at(u));
+            m_input.at(u)->pair(*array.at(u));
         }
     }
 
-    void cSensor::
-    input(const std::vector<double> & in)
+    void cMover::
+    output(std::vector<double> & out)
     {
-        if (in.size() != m_input.size())
-            throw exception::custom("Wrong input array size");
-        for (unsigned u = 0; u < in.size(); u++)
+        if (out.size() != m_output.size())
+            throw exception::custom("Wrong output array size");
+        for (unsigned u = 0; u < out.size(); u++)
         {
-            m_input.at(u)->get(in.at(u));
+            out.at(u) = m_output.at(u)->let();
         }
     }
 
-    void cSensor::
+    void cMover::
     send()
     {
         std::map<unsigned,cNeuron *>::iterator iter;
@@ -163,7 +163,7 @@ namespace CANN
         }
     }
 
-    void cSensor::
+    void cMover::
     flip()
     {
         std::map<unsigned,cNeuron *>::iterator iter;
@@ -173,7 +173,7 @@ namespace CANN
         }
     }
 
-    std::ostream & cSensor::
+    std::ostream & cMover::
     dump(std::ostream & out)
     {
         std::map<unsigned,cNeuron *>::iterator iter;

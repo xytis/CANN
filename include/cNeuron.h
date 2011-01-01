@@ -9,6 +9,8 @@
 #include <map>
 #include <cmath>
 
+#include <iomanip>
+
 #include "../include/exception.h"
 #include "../include/cRandomPool.h"
 
@@ -91,6 +93,10 @@ namespace CANN
             */
             void        get(double);
             /**
+            *   Shows current signal
+            */
+            double      let()   { return m_core->m_signal;};
+            /**
             *   Uses the curent activation value to send signals
             */
             void        send();
@@ -111,6 +117,8 @@ namespace CANN
             *   \param cNeuron to unpair from
             */
             void        unpair(cNeuron &);
+
+            std::string core_dump();
             /**
             *   Do not delete single neurons, it causes shitload of problems
             */

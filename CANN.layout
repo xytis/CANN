@@ -2,27 +2,57 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="include/cBrain.h" open="1" top="0" tabpos="2">
-		<Cursor position="382" topLine="0" />
+		<Cursor position="268" topLine="13" />
 	</File>
-	<File name="include/cNeuron.h" open="1" top="0" tabpos="7">
-		<Cursor position="2133" topLine="24" />
+	<File name="include/cMainControler.h" open="1" top="0" tabpos="15">
+		<Cursor position="1145" topLine="32" />
+	</File>
+	<File name="include/cMenuState.h" open="1" top="0" tabpos="18">
+		<Cursor position="776" topLine="10" />
+	</File>
+	<File name="include/cMover.h" open="1" top="0" tabpos="6">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="include/cNeuralNetwork.h" open="1" top="0" tabpos="12">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="include/cNeuron.h" open="1" top="0" tabpos="8">
+		<Cursor position="183" topLine="36" />
+	</File>
+	<File name="include/cPeripheral.h" open="1" top="0" tabpos="11">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="include/cRandomPool.h" open="1" top="0" tabpos="13">
+		<Cursor position="616" topLine="1" />
 	</File>
 	<File name="include/cSensor.h" open="1" top="0" tabpos="4">
-		<Cursor position="682" topLine="6" />
+		<Cursor position="305" topLine="15" />
 	</File>
-	<File name="include/exception.h" open="1" top="0" tabpos="6">
-		<Cursor position="503" topLine="2" />
+	<File name="include/exception.h" open="1" top="0" tabpos="14">
+		<Cursor position="355" topLine="44" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="813" topLine="29" />
+		<Cursor position="2706" topLine="109" />
 	</File>
 	<File name="src/cBrain.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="48" topLine="0" />
+		<Cursor position="2669" topLine="80" />
 	</File>
-	<File name="src/cNeuron.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="2165" topLine="61" />
+	<File name="src/cMainControler.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="1692" topLine="98" />
+	</File>
+	<File name="src/cMenuState.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src/cMover.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="3944" topLine="23" />
+	</File>
+	<File name="src/cNeuron.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="3200" topLine="114" />
+	</File>
+	<File name="src/cResourceManager.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="486" topLine="24" />
 	</File>
 	<File name="src/cSensor.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="56" topLine="28" />
+		<Cursor position="3960" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -6,6 +6,54 @@
 
 namespace exception
 {
+
+
+    class SDLexception: public std::exception
+    {
+        public:
+            enum SDLexceptionType
+            {
+                VIDEO   =   0,
+                INIT,
+                SURFACE,
+                TTF,
+            };
+        private:
+            std::string m_reason;
+            SDLexceptionType    m_type;
+        public:
+            SDLexception(std::string reason, SDLexceptionType type) throw():
+            m_reason(reason),
+            m_type(type)
+            {
+            }
+            const char* what() const throw()
+            {
+                return m_reason.c_str();
+            }
+            const SDLexceptionType type() const throw()
+            {
+                return m_type;
+            }
+            ~SDLexception () throw () {}
+    };
+
+    class InstanceException: public std::exception
+    {
+        private:
+            std::string m_reason;
+        public:
+            InstanceException(std::string reason) throw()
+            {
+                m_reason = reason;
+            }
+            const char* what() const throw()
+            {
+                return m_reason.c_str();
+            }
+            ~InstanceException () throw () {}
+    };
+
     class custom: public std::exception
     {
         private:
