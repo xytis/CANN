@@ -4,13 +4,29 @@ cBrain ir cSensor (ar cMover ar cBrain). Kitaip tariant, kaip padaryti kad neuro
 pasiekiamas iš abiejų objektų, tačiau jo atliekami veiksmai nesidubliuotų.
 Gal nenaudoti to paties neurono? O tik sudaryti sąsają tarp jų su kažkokia jungtimi?
 Tai atrodytų įgyvendinama =]
+DONE: tiesiog padarau po pilnai pralaidžią jungtį tarp klasinių neuronų. Tai lyg ir
+papildomas neuronų sluoksnis, tačiau manau tai nekenks.
 
 2. Sukurti ir išbandyti cBrain. Ji turi sukti skaičiavimus žingsniais. Ji turi turėti nuorodas
 į cSensor(cBridge? cMover), kurie turbūt turi būti vienos klasės palikuonys, pvz cCanal.
+DONE: sukurta klasė sNeuralNetwork, apimanti visas anksčiau minėtas klases ir klasė cPeripheral
+apimanti išorinius tiesinius tinklus.
+TODO: cBridge yra tuščia. Reikia padaryti kad ji apsimestų neuronų tinklu, tačiau tokiu nebūtų =]
 
-3. Sukurti likusius gabalus.
+3. Išpildyti cRandomPool.
+STARTED:  Gali būti kad pakeliui atsiras dar funkcijų ir pati cRandomPool virs virtualiu interface'u
+
 4. Patestuoti kaip sukasi skaičiukai =]
+STARTED:  Pamėginau porą testų, kaip turi veikti skaičiavimai. Iš pirmo žvilgsnio sukasi.
+Pasiekiau kad nusistovėtų signalas tarp įvesties ir išvesties (užloopinau input su output
+    esant 4 neuronų smegenims)
 
 5. Imtis pačio gyvūnėlio =]
+STARTED:  Parašiau pavadinimą ir įdėjau jį į vietą po šios programos kodo medžiu.
 
 6. Imtis SDL aplinkos gyvūnėliui veistis.
+STARTED:  Padaryta pradinė struktūra, jau kvepia grafinio variklio rašymu.
+
+7. Padaryti threading support. Manau kad galima pagrindinį gyvūnėlių masyvą suskladyti į gabalus,
+  ir juos išdalinti thread'ams. (tipo 2 thread'ai, 4 gyvūnėliai, po 2 kiekvienam, paralelėje\
+      tik SDL_surface gali pjautis)

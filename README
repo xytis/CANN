@@ -70,3 +70,28 @@ Paturbintas aprašas:
   Jei dar kas neaišku, o domina nerealiai -- skaitykit parašytą sourc'ą ir rašykit man.
 
   Vytis <xytis2000@gmail.com>
+
+
+********************************************************************************
+**                           SDL Interface                                    **
+********************************************************************************
+
+  Akivaizdu kad programa su grafiniu atvaizdavimu turi remtis kažkokia grafine biblioteka.
+  Aš pasirinkau libSDL.
+
+  Kaip bus suklijuotas programos veikimas:
+    (SI - single instance (singleton) klasės
+     VI - virtual interface klasės)
+
+  SI cMainControler: užsiima SDL inicijavimu, laiko cProgramStates steką ir resursų
+    controler'io adresą.
+  SI cResourceControler: užsiima visų resursų inicijavimu\užkrovimu\išlaisvinimu.
+    Išorinis pasaulis (ir kai kurie vidiniai resursai) turi būti prieinami būtent
+    per šią klasę.
+  VI cProgramState: virtualus programos būsenos interface'as. Palei jį kuriamos kitos būsenos
+    Menu, Authors, Properties, Render...
+  SI cRenderState: pagrindinė programos būsena, iš jos pagrindiniame lange atsiras gyvūnėliai,
+    iš jos ir bus kviečiamas world_update ir gyvūnėlių mąstymas.
+  VI cRenderObject: virtuali klasė visų atvaizduotinų objektų surišimui ir patogiam atvaizdavimui
+    iš cRenderState. Mūsų pagrindinis veikėjas cCreature(a.k.a. Hex'as) irgi yra jos palikuonis.
+    Tikiu kad ir kiti pasaulio objektai (jei jų bus) bus šios klasės palikuonys.
