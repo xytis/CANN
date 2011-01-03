@@ -6,6 +6,9 @@ CMakeCache.txt
 Makefile
 *.cmake
 
+*.depend
+*.layout
+
 build/
 bin/
 obj/

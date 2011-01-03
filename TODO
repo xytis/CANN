@@ -30,3 +30,8 @@ STARTED:  Padaryta pradinė struktūra, jau kvepia grafinio variklio rašymu.
 7. Padaryti threading support. Manau kad galima pagrindinį gyvūnėlių masyvą suskladyti į gabalus,
   ir juos išdalinti thread'ams. (tipo 2 thread'ai, 4 gyvūnėliai, po 2 kiekvienam, paralelėje\
       tik SDL_surface gali pjautis)
+
+8. Sukurti naują klasę UniqueIDManager, kuri būtų statiška ir tik viena ir neinicijuojama (atsirastų
+  su programos startu). Ji turėtų valdyti priskiriamus ID visiem objektam (map<ID, void*>).
+  Jei taip neišeis, tai reikia dar ir viršutinės klasės UniqueIDObject, kurią visi kito objektai
+  kaip private inheritance pasiimtų.
