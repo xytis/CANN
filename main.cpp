@@ -11,13 +11,13 @@
 
 #include <iostream>
 #include <fstream>
-
+/*
 #include "include/cBrain.h"
 #include "include/cSensor.h"
 #include "include/cMover.h"
 #include "include/cNeuron.h"
 #include "include/cRandomPool.h"
-
+*/
 #include "include/cMainControler.h"
 #include "include/cMenuState.h"
 #include "include/cRenderState.h"
@@ -127,6 +127,7 @@ int main ( int argc, char** argv )
     program->init("hello", 640, 480, 32);
     Interface::cMenuState * menu = Interface::cMenuState::create(program);
     Interface::cRenderState * render = Interface::cRenderState::create(program);
+    program->push(menu);
     program->push(render);
     program->run();
     program->clean_up();

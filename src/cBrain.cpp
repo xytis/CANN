@@ -22,7 +22,7 @@ namespace CANN
             for (unsigned uu = 0; uu < m_size; uu++)
             {
                 //Links the neurons with random weights.
-                (neurons->at(u))->link(*(neurons->at(uu)), R.fresh_link());
+                (neurons->find(u)->second)->link(*(neurons->find(uu)->second), R.fresh_link());
             }
     }
 
@@ -65,7 +65,7 @@ namespace CANN
                     std::getline(in, line);
                     if (line == "")
                         std::getline(in, line);
-                    (neurons->at(u))->set_genome(line);
+                    (neurons->find(u)->second)->set_genome(line);
                 }
 
             }
@@ -82,7 +82,7 @@ namespace CANN
         out << "NEURONS" << std::endl;
         for (unsigned u = 0; u < m_size; u++)
         {
-            out << (neurons->at(u))->get_genome() << std::endl;
+            out << (neurons->find(u)->second)->get_genome() << std::endl;
         }
     }
 

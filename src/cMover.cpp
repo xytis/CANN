@@ -28,19 +28,19 @@ namespace CANN
             {
                 for (unsigned uuu = 0; uuu < m_layout.at(u+1); uuu++)
                     //Links the neurons with random weights.
-                    (neurons->at(n+uu))->link(*(neurons->at(n+m_layout.at(u)+uuu)), R.fresh_link());
+                    (neurons->find(n+uu)->second)->link(*(neurons->find(n+m_layout.at(u)+uuu)->second), R.fresh_link());
             }
             n += m_layout.at(u);
         }
         //Save references of input layer
         for (unsigned u = 0; u < m_layout.at(0); u++)
         {
-            m_input.push_back(neurons->at(u));
+            m_input.push_back(neurons->find(u)->second);
         }
         //Save references of the output layer
         for (unsigned u = m_size-m_layout.at(m_layout.size()-1); u < m_size; u++)
         {
-            m_output.push_back(neurons->at(u));
+            m_output.push_back(neurons->find(u)->second);
         }
     }
 
@@ -95,17 +95,17 @@ namespace CANN
                     std::getline(in, line);
                     if (line == "")
                         std::getline(in, line);
-                    (neurons->at(u))->set_genome(line);
+                    (neurons->find(u)->second)->set_genome(line);
                 }
                 //Save references of input layer
                 for (unsigned u = 0; u < m_layout.at(0); u++)
                 {
-                    m_input.push_back(neurons->at(u));
+                    m_input.push_back(neurons->find(u)->second);
                 }
                 //Save references of the output layer
                 for (unsigned u = m_size-m_layout.at(m_layout.size()-1)-1; u < m_size; u++)
                 {
-                    m_output.push_back(neurons->at(u));
+                    m_output.push_back(neurons->find(u)->second);
                 }
             }
 
