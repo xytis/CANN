@@ -41,7 +41,7 @@ namespace CANN
             *   \param unsigned ID
             *   \return refence to cNeuron
             */
-            cNeuron * at(unsigned id) { return neurons->at(id);};
+            cNeuron * at(unsigned id) { return neurons->find(id)->second;};
 
             /**
             *   Outputs genome of the sensor with its cells

@@ -29,7 +29,8 @@ namespace Interface
             SDL_Surface* background;
 
             //Never to touch
-            cMenuState();
+            cMenuState() {};
+            ~cMenuState() {};
     };
 };
 
