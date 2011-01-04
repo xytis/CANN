@@ -19,6 +19,7 @@ namespace CANN
             cBrain  * brain;
             cMover  * mover;
             vector<cPeripheral *> sensors_n_bridges;
+            queue<cActivity *> todo;
         public:
             //Should have all the methods as render object here
     };
