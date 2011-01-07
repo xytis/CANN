@@ -45,6 +45,7 @@ namespace Interface
 
         while(SDL_PollEvent(&event))
         {
+            m_controler->checkEvent(&event);
             switch(event.type)
             {
                 case SDL_KEYDOWN:
@@ -79,5 +80,56 @@ namespace Interface
     kill()
     {
 
+    }
+
+    void cMenuItem::
+    init(std::string text, cMainControler* controler, Font font)
+    {
+        m_text = std::string(text.begin(), text.end());
+        m_controler = controler;
+        m_font = controler->resources.get_font(font);
+
+        m_active_color = SDLVideo::make_color(255, 0, 0);
+        m_inactive_color = SDLVideo::make_color(0, 0, 0);
+
+        m_active_surface = NULL;
+        m_inactive_surface = NULL;
+    }
+
+    cMenuItem::
+    ~cMenuItem()
+    {
+        SDL_FreeSurface(m_active_surface);
+        SDL_FreeSurface(m_inactive_surface);
+    }
+
+    SDL_Surface* cMenuItem::
+    get_active_surface()
+    {
+        if(m_active_surface == NULL)
+        {
+            m_active_surface = TTF_RenderText_Blended(m_font, m_text.c_str(), m_active_color);
+        }
+
+        return m_active_surface;
+    }
+
+    SDL_Surface* cMenuItem::
+    get_inactive_surface()
+    {
+        if(m_inactive_surface == NULL)
+        {
+            m_inactive_surface = TTF_RenderText_Blended(m_font, m_text.c_str(), m_inactive_color);
+        }
+
+        return m_inactive_surface;
+    }
+
+    void ExitItem::
+    action()
+    {
+        SDL_Event e;
+        e.type = SDL_QUIT;
+        SDL_PushEvent(&e);
     }
 };

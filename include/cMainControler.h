@@ -40,6 +40,8 @@ namespace Interface
             void    pop();
             cProgramState* get_state();
 
+            void checkEvent (SDL_Event*);
+
             SDL_Surface     * screen;
             cResourceManager resources;
 

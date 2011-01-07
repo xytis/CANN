@@ -58,5 +58,41 @@ namespace Interface
             SDL_FreeSurface(image_iter->second);
         }
         images.clear();
+
+        // Clear loaded fonts
+        std::map<Font,TTF_Font*,FontCompare>::iterator font_iter;
+        for(font_iter = fonts.begin(); font_iter != fonts.end(); ++font_iter)
+        {
+            TTF_CloseFont(font_iter->second);
+        }
+
+        fonts.clear();
     }
+
+    TTF_Font* cResourceManager::
+    get_font(Font font)
+    {
+        std::map<Font,TTF_Font*,FontCompare>::iterator iter = fonts.find(font);
+        if(iter != fonts.end())
+        {
+            return iter->second;
+        }
+        else
+        {
+            fonts[font] = TTF_OpenFont((resource_dir + font.filename).c_str(), font.size);
+        }
+
+        return fonts[font];
+    }
+
+    void cResourceManager::
+    release_font(Font font)
+    {
+        std::map<Font,TTF_Font*,FontCompare>::iterator iter = fonts.find(font);
+        if(iter != fonts.end())
+        {
+            TTF_CloseFont(iter->second);
+        }
+    }
+
 };

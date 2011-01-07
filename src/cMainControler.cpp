@@ -61,17 +61,16 @@ namespace Interface
         {
             SDL_PumpEvents();
 
-            num_events = SDL_PeepEvents(events, 1, SDL_PEEKEVENT, SDL_QUITMASK);
-
-            if(num_events > 0)
+            try
             {
-                kill();
+                states.top()->process();
+                states.top()->draw();
+            }
+            catch (exception::kill_event &e)
+            {
+                running=false;
                 continue;
             }
-
-            states.top()->process();
-            states.top()->draw();
-
             next_tick += SKIP_TICKS;
             sleep_time = next_tick - SDL_GetTicks();
 
@@ -85,7 +84,7 @@ namespace Interface
     void cMainControler::
     kill()
     {
-        running = false;
+        throw exception::kill_event();
     }
 
     void cMainControler::
@@ -147,5 +146,12 @@ namespace Interface
     get_state()
     {
         return states.top();
+    }
+
+    void cMainControler::
+    checkEvent(SDL_Event * E)
+    {
+        if (E->type==SDL_QUIT)
+            throw exception::kill_event();
     }
 };

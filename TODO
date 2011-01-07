@@ -26,6 +26,10 @@ STARTED:  Parašiau pavadinimą ir įdėjau jį į vietą po šios programos kod
 
 6. Imtis SDL aplinkos gyvūnėliui veistis.
 STARTED:  Padaryta pradinė struktūra, jau kvepia grafinio variklio rašymu.
+6.1 Sukurti grafinį variklį. Su struktūromis piešimui ant ekrano.
+6.2 Išpildyti MenuState
+6.3 Išpildyti RenderState
+6.4 Išpildyti AuthorState ir HelpState
 
 7. Padaryti threading support. Manau kad galima pagrindinį gyvūnėlių masyvą suskladyti į gabalus,
   ir juos išdalinti thread'ams. (tipo 2 thread'ai, 4 gyvūnėliai, po 2 kiekvienam, paralelėje\

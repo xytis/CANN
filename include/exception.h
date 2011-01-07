@@ -7,7 +7,19 @@
 namespace exception
 {
 
+    class kill_event:public std::exception
+    {
+        public:
+            kill_event() throw()
+            {
 
+            }
+            const char* what() const throw()
+            {
+                return "The Program Was KILLED, yay";
+            }
+            ~kill_event () throw () {}
+    };
     class SDLexception: public std::exception
     {
         public:

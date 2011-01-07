@@ -126,9 +126,9 @@ int main ( int argc, char** argv )
     Interface::cMainControler * program = Interface::cMainControler::create();
     program->init("hello", 640, 480, 32);
     Interface::cMenuState * menu = Interface::cMenuState::create(program);
-    Interface::cRenderState * render = Interface::cRenderState::create(program);
+    //Interface::cRenderState * render = Interface::cRenderState::create(program);
     program->push(menu);
-    program->push(render);
+    //program->push(render);
     program->run();
     program->clean_up();
 
