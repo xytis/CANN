@@ -4,6 +4,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include <vector>
+
 #include "../include/sdl_video.h"
 
 #include "../include/cMainControler.h"
@@ -52,9 +54,13 @@ namespace Interface
             static cMenuState * instance();
         protected:
             cMenuState(cMainControler * controler);
+            std::vector<cMenuItem*>::iterator m_active_item;
+            std::vector<cMenuItem*> m_items;
+            SDL_Surface* background;
+            void selection_down();
+            void selection_up();
         private:
             static cMenuState * m_instance;
-            SDL_Surface* background;
 
             //Never to touch
             cMenuState();

@@ -24,18 +24,30 @@ namespace Interface
     cMenuState(cMainControler * controler):
     cProgramState(controler)
     {
+        Font menu_font = {"pillbox.ttf", 12};
+        m_items.reserve(2);
+
+        ExitItem* exit_item = new ExitItem();
+        exit_item->init("Exit", m_controler, menu_font);
+
+        ExitItem* exit_item2 = new ExitItem();
+        exit_item2->init("Exit2", m_controler, menu_font);
+
+        m_items.push_back(exit_item);
+        m_items.push_back(exit_item2);
     }
 
     void cMenuState::
     init()
     {
         background = m_controler->resources.get_image("background.png");
+        m_active_item = m_items.begin();
     }
 
     void cMenuState::
     resume()
     {
-
+        m_active_item = m_items.begin();
     }
 
     void cMenuState::
@@ -49,14 +61,20 @@ namespace Interface
             switch(event.type)
             {
                 case SDL_KEYDOWN:
-                    /*
+
                     if(event.key.keysym.sym == SDLK_DOWN)
-                        move_down();
+                    {
+                        selection_down();
+                        //std::cout << "Down" << std::endl;
+                    }
                     else if(event.key.keysym.sym == SDLK_UP)
-                        move_up();
+                    {
+                        selection_up();
+                        //std::cout << "Up" << std::endl;
+                    }
                     else if(event.key.keysym.sym == SDLK_RETURN)
                         (*m_active_item)->action();
-                    */
+
                     break;
             }
         }
@@ -67,7 +85,28 @@ namespace Interface
     {
         SDLVideo::apply_surface(background, 0, 0, background->w, background->h, m_controler->screen, 0, 0);
 
+        SDL_Surface* menu_surface;
+        std::vector<cMenuItem*>::iterator iter;
+        int item_position = 0;
+
+        for(iter = m_items.begin(); iter != m_items.end(); ++iter)
+        {
+            item_position = m_controler->screen->h / 10 * (iter - m_items.begin() + 1);
+
+            if(*iter == *m_active_item)
+            {
+                menu_surface = (*iter)->get_active_surface();
+            }
+            else
+            {
+                menu_surface = (*iter)->get_inactive_surface();
+            }
+
+            SDLVideo::apply_surface(menu_surface, 0, 0, menu_surface->w, menu_surface->h, m_controler->screen, 400, item_position);
+        }
+
         SDL_Flip(m_controler->screen);
+
     }
 
     void cMenuState::
@@ -80,6 +119,28 @@ namespace Interface
     kill()
     {
 
+    }
+
+    void cMenuState::
+    selection_down()
+    {
+        m_active_item++;
+
+        if(m_active_item == m_items.end())
+        {
+            m_active_item = m_items.begin();
+        }
+    }
+
+    void cMenuState::
+    selection_up()
+    {
+        m_active_item--;
+
+        if(m_active_item < m_items.begin())
+        {
+            m_active_item = m_items.end() - 1;
+        }
     }
 
     void cMenuItem::
