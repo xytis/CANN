@@ -33,7 +33,6 @@ link_libraries (
     ${SDL_LIBRARY}
     ${SDLIMAGE_LIBRARY}
     ${SDLTTF_LIBRARY}
-    SDLmain
 )
 
 add_executable(
