@@ -9,4 +9,4 @@ cmake ..
 
 Papildomos komandos (rašomos prie CMake):
 
--DCMAKE_BUILD_TYPE=build type (nenurodžius šito bus paimtas po defaultinis build type = DEBUG, dar galimas variantas RELEASE (atsargiai, case-sensitive))
+-DCMAKE_BUILD_TYPE=build type (nenurodžius šito bus paimtas po defaultinis build type = Debug, dar galimas variantas Release (atsargiai, case-sensitive))
