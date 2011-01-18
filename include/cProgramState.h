@@ -10,6 +10,7 @@ namespace Interface
         public:
             virtual void init() = 0;
             virtual void resume() = 0;
+            //Here user interaction or calculations take place.
             virtual void process() = 0;
             virtual void draw() = 0;
             virtual void suspend() = 0;

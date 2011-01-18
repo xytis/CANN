@@ -28,14 +28,10 @@ namespace Interface
             throw exception::SDLexception(SDL_GetError(), exception::SDLexception::INIT);
         }
 
-        SDL_WM_SetCaption(title.c_str(), NULL);
+        m_window = new cWindow(this);
+        m_window->init(title, width, height, bpp);
 
-        screen = SDL_SetVideoMode(width, height, bpp, SDL_SWSURFACE);
-
-        if(screen == NULL)
-        {
-            throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
-        }
+        screen = m_window->get_screen();
 
         if(TTF_Init() == -1)
         {
@@ -43,6 +39,14 @@ namespace Interface
         }
 
         running = true;
+        register_resolver(SDL_QUIT, new cExitResolver(this));
+    }
+
+    void cMainControler::
+    resume()
+    {
+        states.top()->resume();
+        //? Ką daryti kad vėl parodytų vaizdą?
     }
 
     void cMainControler::
@@ -52,7 +56,8 @@ namespace Interface
         const int SKIP_TICKS = 1000 / FPS;
 
         Uint32 next_tick = SDL_GetTicks();
-        Uint32 sleep_time;
+        int sleep_time;
+
 
         SDL_Event* events;
         int num_events;
@@ -82,6 +87,12 @@ namespace Interface
     }
 
     void cMainControler::
+    suspend()
+    {
+        states.top()->suspend();
+    }
+
+    void cMainControler::
     kill()
     {
         throw exception::kill_event();
@@ -97,7 +108,8 @@ namespace Interface
         }
         SDL_FreeSurface(screen);
 
-        //resources.clean_up();
+        resources.clean_up();
+        m_event_resolvers.clear();
         SDL_Quit();
 
     }
@@ -149,9 +161,40 @@ namespace Interface
     }
 
     void cMainControler::
-    checkEvent(SDL_Event * E)
+    register_resolver(SDL_EventType key, cResolver * resolver)
     {
-        if (E->type==SDL_QUIT)
-            throw exception::kill_event();
+        m_event_resolvers[key] = resolver;
+    }
+
+    void cMainControler::
+    release_resolver(SDL_EventType key)
+    {
+        m_event_resolvers.erase(key);
+    }
+
+    void cMainControler::
+    check(SDL_Event * e)
+    {
+        std::map<Uint8, cResolver *>::iterator iter;
+        iter = m_event_resolvers.find(e->type);
+        if (iter != m_event_resolvers.end())
+        {
+            std::cout << "Event : " << int(e->type);
+            if (iter->second->Call(e))
+                std::cout << " handled" << std::endl;
+            else
+                std::cout << " mishandled" << std::endl;
+        }
+        else
+        {
+            std::cout << "##Unhandled event: " << int(e->type) << std::endl;
+        }
+    }
+
+    bool cExitResolver::
+    Call(SDL_Event * event)
+    {
+        m_caller->kill();
+        return true;
     }
 };

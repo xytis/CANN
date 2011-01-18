@@ -13,14 +13,18 @@
 
 #include <string>
 #include <stack>
+#include <map>
 
 #include "../include/exception.h"
 #include "../include/cProgramState.h"
 #include "../include/cResourceManager.h"
+#include "../include/cWindow.h"
+#include "../include/cResolver.h"
 
 namespace Interface
 {
     class cResourceManager;
+    class cWindow;
 
     class cMainControler
     {
@@ -29,9 +33,10 @@ namespace Interface
 
             static  cMainControler * create();
 
-            void init(std::string title, int width, int height, int bpp);
-
+            void    init(std::string title, int width, int height, int bpp);
+            void    resume();
             void    run();
+            void    suspend();
             void    kill();
             void    clean_up();
 
@@ -40,10 +45,17 @@ namespace Interface
             void    pop();
             cProgramState* get_state();
 
-            void checkEvent (SDL_Event*);
+
+            void    register_resolver(SDL_EventType, cResolver *);
+            void    release_resolver(SDL_EventType);
+            void    check (SDL_Event*);
 
             SDL_Surface     * screen;
+            cWindow         * m_window;
             cResourceManager resources;
+
+            friend class cExitResolver;
+
 
         private:
             friend  class cProgramState;
@@ -52,11 +64,24 @@ namespace Interface
 
 
 
+            std::map<Uint8, cResolver *> m_event_resolvers;
+
             cMainControler():resources("resources/") {};
             ~cMainControler() {};
 
             std::stack<cProgramState*> states;
             bool running;
     };
+
+    class cExitResolver : public cResolver
+    {
+        public:
+            bool Call(SDL_Event *);
+
+            cExitResolver(cMainControler * caller):m_caller(caller) {};
+        private:
+            cMainControler * m_caller;
+    };
+
 };
 #endif // CMAINCONTROLER_H_INCLUDED

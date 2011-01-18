@@ -45,7 +45,7 @@ namespace Interface
 
         while(SDL_PollEvent(&event))
         {
-            m_controler->checkEvent(&event);
+            m_controler->check(&event);
             switch(event.type)
             {
                 case SDL_KEYDOWN:

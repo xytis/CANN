@@ -40,7 +40,7 @@ namespace Interface
         /*!
          \param f A Font class
          \param f2 A Font class
-         \return True if f1 evaluated less than f2
+         \return True if f1 evaluated ltutess than f2
          \sa ResourceMap::fonts
         */
         bool operator()(Font f1, Font f2)
