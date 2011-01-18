@@ -22,6 +22,8 @@ namespace Interface
             virtual void action() = 0;
             SDL_Surface* get_active_surface();
             SDL_Surface* get_inactive_surface();
+            SDL_Surface* get_active_text();
+            SDL_Surface* get_inactive_text();
             SDL_Rect     m_box;
         protected:
             cMainControler* m_controler;
@@ -30,6 +32,8 @@ namespace Interface
             TTF_Font* m_font;
             SDL_Surface* m_active_surface;
             SDL_Surface* m_inactive_surface;
+            SDL_Surface* m_active_text;
+            SDL_Surface* m_inactive_text;
             SDL_Color m_active_color;
             SDL_Color m_inactive_color;
     };
@@ -47,18 +51,36 @@ namespace Interface
             void action();
     };
 
+    class PreferencesItem : public cMenuItem
+    {
+        public:
+            void action();
+    };
+
+    class BackItem : public cMenuItem
+    {
+        public:
+            void action();
+    };
+
+    class EmptyItem : public cMenuItem
+    {
+        public:
+            void action();
+    };
+
     class cMenuState : public cProgramState
     {
         public:
-            void init();
+            virtual void init() = 0;
             void resume();
-            void process();
+            virtual void process() = 0;
             void draw();
             void suspend();
-            void kill();
+            virtual void kill() = 0;
 
-            static cMenuState * create(cMainControler *);
-            static cMenuState * instance();
+            //static cMenuState * create(cMainControler *);
+            //static cMenuState * instance();
             //here goes friend cResolver classes.
 
             friend class cKeyResolver;
@@ -73,13 +95,28 @@ namespace Interface
             void selection_down();
             void selection_up();
         private:
-
-
-            static cMenuState * m_instance;
+            //static cMenuState * m_instance;
 
             //Never to touch
             cMenuState();
-            ~cMenuState() {};
+    };
+
+    class cMainMenu : public cMenuState
+    {
+        public:
+            cMainMenu(cMainControler * controler);
+            void init();
+            void process();
+            void kill();
+    };
+
+    class cPreferencesMenu : public cMenuState
+    {
+        public:
+            cPreferencesMenu(cMainControler * controler);
+            void init();
+            void process();
+            void kill();
     };
 
     class cKeyResolver : public cResolver

@@ -5,6 +5,10 @@ namespace Interface
     SDL_Surface* cResourceManager::
     get_image(std::string filename)
     {
+        filename = resource_dir + filename;
+
+        SDL_Surface * loaded;
+        SDL_Surface * copy;
         std::map<std::string,SDL_Surface*>::iterator iter = images.find(filename);
         if(iter != images.end())
         {
@@ -15,14 +19,12 @@ namespace Interface
             SDL_Surface *loadedImage = NULL;
             SDL_Surface *optimizedImage = NULL;
 
-            filename = resource_dir + filename;
-
-            std::cout << filename << std::endl;
             loadedImage = IMG_Load(filename.c_str());
 
             if(loadedImage != NULL)
             {
                 optimizedImage = SDL_DisplayFormatAlpha(loadedImage);
+                std::cout << "Image loaded: " << filename << std::endl;
                 SDL_FreeSurface(loadedImage);
             }
             else

@@ -1,0 +1,4 @@
+1. When loading SDL_Surfaces from file, cResource manager passes single
+address to SDL_Surface. Any modification to SDL_Surface is stored.
+Next time cResource passes the same address, to possibly modified SDL_Surface.
+DO NOT MODIFY SDL_Surfaces taken from files. 

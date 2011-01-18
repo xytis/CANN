@@ -2,6 +2,7 @@
 #define CRESOURCEMANAGER_H_INCLUDED
 
 #include "../include/exception.h"
+#include "../include/sdl_video.h"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
