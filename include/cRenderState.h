@@ -4,15 +4,19 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include <vector>
+
 #include "../include/sdl_video.h"
 
 #include "../include/cMainControler.h"
 #include "../include/cThread.h"
+#include "../include/cRenderObject.h"
 
 namespace Interface
 {
     class cSimulationThread;
     class cEventThread;
+    class cRedBlock;
 
     class cRenderState : public cProgramState
     {
@@ -28,6 +32,7 @@ namespace Interface
             //static cRenderState * instance();
 
             friend class cKeyResolver;
+            friend class cMouseResolver;
             cRenderState(cMainControler * controler);
         protected:
 
@@ -38,8 +43,17 @@ namespace Interface
             cSimulationThread * background_thread;
             cEventThread * foreground_thread;
 
+            std::vector<cRenderObject *> m_objects;
+
             //Never to touch
             cRenderState();
+    };
+
+    class cRedBlock : public cRenderObject
+    {
+        public:
+            cRedBlock(cMainControler *);
+            void process();
     };
 
     class cSimulationThread : public cThread
@@ -65,6 +79,16 @@ namespace Interface
             bool Call(SDL_Event * e);
 
             cKeyResolver(cRenderState * caller):m_caller(caller) {};
+        private:
+            cRenderState * m_caller;
+    };
+
+    class cMouseResolver : public cResolver
+    {
+        public:
+            bool Call(SDL_Event * e);
+
+            cMouseResolver(cRenderState * caller):m_caller(caller) {};
         private:
             cRenderState * m_caller;
     };

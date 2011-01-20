@@ -34,6 +34,9 @@ namespace Interface
     init()
     {
         background = m_controler->resources.get_image("background.png");
+
+        m_objects.push_back(new cRedBlock(m_controler));
+
         resume();
     }
 
@@ -41,6 +44,7 @@ namespace Interface
     resume()
     {
         m_controler->register_resolver(SDL_KEYDOWN, new cKeyResolver(this));
+        m_controler->register_resolver(SDL_MOUSEMOTION, new cMouseResolver(this));
         background_thread = new cSimulationThread();
         foreground_thread = new cEventThread(m_controler);
     }
@@ -52,12 +56,18 @@ namespace Interface
         bool end = false;
         background_thread->Start((void *)&end);
         foreground_thread->Start((void *)&end);
+
+        background_thread->Wait();
+        foreground_thread->Wait();
     }
 
     void cRenderState::
     draw()
     {
         SDLVideo::apply_surface(background, 0, 0, background->w, background->h, m_controler->screen, 0, 0);
+
+        for (int i = 0; i < m_objects.size(); i++)
+            m_objects[i]->draw();
 
         SDL_Flip(m_controler->screen);
     }
@@ -68,12 +78,35 @@ namespace Interface
         delete background_thread;
         delete foreground_thread;
         m_controler->release_resolver(SDL_KEYDOWN);
+        m_controler->release_resolver(SDL_MOUSEMOTION);
     }
 
     void cRenderState::
     kill()
     {
         suspend();
+    }
+
+    cRedBlock::
+    cRedBlock(cMainControler * controler):
+    cRenderObject(controler)
+    {
+        load_sprite("red_cube.png");
+        box.h = 50;
+        box.w = 50;
+        SDL_Rect * n_clip = new SDL_Rect;
+        n_clip->x = 0;
+        n_clip->y = 0;
+        n_clip->h = box.h;
+        n_clip->w = box.w;
+        add_clip(std::string("default"),n_clip);
+        set_state("default");
+    }
+
+    void cRedBlock::
+    process()
+    {
+
     }
 
     cSimulationThread::
@@ -103,6 +136,14 @@ namespace Interface
     Execute(void * arg)
     {
         SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            m_controler->check(&event);
+        }
+        /* Makes bad stuff happen. Something is not ok, when one thread is on waiting mode,
+            and other kills it...
+        //If after main work is done, other thread is not done yet
+        //Continue waiting.
         while (*((bool*)arg)==false)
         {
             if(SDL_PollEvent(&event))
@@ -114,6 +155,7 @@ namespace Interface
                 SDL_Delay(1);
             }
         }
+        */
     }
 
     bool cKeyResolver::
@@ -133,5 +175,13 @@ namespace Interface
             return true;
         }
         return false;
+    }
+
+    bool cMouseResolver::
+    Call(SDL_Event * event)
+    {
+        m_caller->m_objects[0]->box.x = event->motion.x;
+        m_caller->m_objects[0]->box.y = event->motion.y;
+        return true;
     }
 };
