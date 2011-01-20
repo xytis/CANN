@@ -49,6 +49,7 @@ namespace Interface
             void    register_resolver(SDL_EventType, cResolver *);
             void    release_resolver(SDL_EventType);
             void    check (SDL_Event*);
+            void    wait_for(SDL_EventType);
 
             SDL_Surface     * screen;
             cWindow         * m_window;

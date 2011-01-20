@@ -9,6 +9,7 @@
 #include "../include/sdl_video.h"
 
 #include "../include/cMainControler.h"
+#include "../include/cRenderState.h"
 
 namespace Interface
 {
@@ -63,6 +64,12 @@ namespace Interface
             void action();
     };
 
+    class StartItem : public cMenuItem
+    {
+        public:
+            void action();
+    };
+
     class EmptyItem : public cMenuItem
     {
         public:
@@ -86,6 +93,36 @@ namespace Interface
             friend class cKeyResolver;
             friend class cMouseResolver;
             friend class cClickResolver;
+
+            class cKeyResolver : public cResolver
+            {
+                public:
+                    bool Call(SDL_Event * e);
+
+                    cKeyResolver(cMenuState * caller):m_caller(caller) {};
+                private:
+                    cMenuState * m_caller;
+            };
+
+            class cMouseResolver : public cResolver
+            {
+                public:
+                    bool Call(SDL_Event * e);
+
+                    cMouseResolver(cMenuState * caller):m_caller(caller) {};
+                private:
+                    cMenuState * m_caller;
+            };
+
+            class cClickResolver : public cResolver
+            {
+                public:
+                    bool Call(SDL_Event * e);
+
+                    cClickResolver(cMenuState * caller):m_caller(caller) {};
+                private:
+                    cMenuState * m_caller;
+            };
 
         protected:
             cMenuState(cMainControler * controler);
@@ -119,35 +156,7 @@ namespace Interface
             void kill();
     };
 
-    class cKeyResolver : public cResolver
-    {
-        public:
-            bool Call(SDL_Event * e);
 
-            cKeyResolver(cMenuState * caller):m_caller(caller) {};
-        private:
-            cMenuState * m_caller;
-    };
-
-    class cMouseResolver : public cResolver
-    {
-        public:
-            bool Call(SDL_Event * e);
-
-            cMouseResolver(cMenuState * caller):m_caller(caller) {};
-        private:
-            cMenuState * m_caller;
-    };
-
-    class cClickResolver : public cResolver
-    {
-        public:
-            bool Call(SDL_Event * e);
-
-            cClickResolver(cMenuState * caller):m_caller(caller) {};
-        private:
-            cMenuState * m_caller;
-    };
 };
 
 #endif // CMENUSTATE_H_INCLUDED

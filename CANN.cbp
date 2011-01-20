@@ -30,7 +30,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="`sdl-config --cflags`" />
+			<Add option="`sdl-config --cflags` -std=c++0x" />
 		</Compiler>
 		<Linker>
 			<Add option="`sdl-config --libs`" />
@@ -51,8 +51,11 @@
 		<Unit filename="include/cRandomPool.h" />
 		<Unit filename="include/cRenderObject.h" />
 		<Unit filename="include/cRenderState.h" />
+		<Unit filename="include/cResolver.h" />
 		<Unit filename="include/cResourceManager.h" />
 		<Unit filename="include/cSensor.h" />
+		<Unit filename="include/cThread.h" />
+		<Unit filename="include/cWindow.h" />
 		<Unit filename="include/exception.h" />
 		<Unit filename="include/sdl_video.h" />
 		<Unit filename="include/sigma.h" />
@@ -65,6 +68,8 @@
 		<Unit filename="src/cRenderState.cpp" />
 		<Unit filename="src/cResourceManager.cpp" />
 		<Unit filename="src/cSensor.cpp" />
+		<Unit filename="src/cThread.cpp" />
+		<Unit filename="src/cWindow.cpp" />
 		<Unit filename="src/sdl_video.cpp" />
 		<Extensions>
 			<code_completion />

@@ -18,7 +18,7 @@ namespace Interface
         box.w = 200;
         box.h = 50;
 
-        EmptyItem* start_item = new EmptyItem();
+        StartItem* start_item = new StartItem();
         start_item->init("Start", m_controler, menu_font, box);
 
         box.y += box.h+10;
@@ -336,6 +336,12 @@ namespace Interface
         m_controler->pop();
     }
 
+    void StartItem::
+    action()
+    {
+        m_controler->push(new cRenderState(m_controler));
+    }
+
     void EmptyItem::
     action()
     {
@@ -346,7 +352,7 @@ namespace Interface
      *  Handlers
      */
 
-    bool cKeyResolver::
+    bool cMenuState::cKeyResolver::
     Call(SDL_Event * event)
     {
         if(event->key.keysym.sym == SDLK_DOWN)
@@ -370,7 +376,7 @@ namespace Interface
         return false;
     }
 
-    bool cMouseResolver::
+    bool cMenuState::cMouseResolver::
     Call(SDL_Event * event)
     {
         //Get the mouse offsets
@@ -390,7 +396,7 @@ namespace Interface
         return true;
     }
 
-    bool cClickResolver::
+    bool cMenuState::cClickResolver::
     Call(SDL_Event * event)
     {
         //If there was a click =]

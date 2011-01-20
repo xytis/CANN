@@ -191,6 +191,18 @@ namespace Interface
         }
     }
 
+    void cMainControler::
+    wait_for(SDL_EventType type)
+    {
+        SDL_Event event;
+        while (event.type != type)
+        {
+            std::cout << "Waiting..." << std::endl;
+            SDL_WaitEvent(&event);
+            check(&event);
+        }
+    }
+
     bool cExitResolver::
     Call(SDL_Event * event)
     {
