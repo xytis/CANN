@@ -19,6 +19,8 @@ set(
     src/cNeuron.cpp
     src/cRenderState.cpp
     src/cResourceManager.cpp
+    src/cThread.cpp
+    src/cWindow.cpp
     src/cSensor.cpp
     src/sdl_video.cpp
     main.cpp
