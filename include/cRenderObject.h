@@ -21,7 +21,7 @@ namespace Interface
             {};
             void load_sprite(std::string filename)
             {
-                m_sprite = m_controler->resources.get_image(filename);
+                m_sprite = m_controler->resources.get_image(filename, this);
             };
             void add_clip(std::string state, SDL_Rect * clip)
             {
