@@ -3,17 +3,28 @@
 namespace Interface
 {
     SDL_Surface* cResourceManager::
-    get_image(std::string filename)
+    get_image(std::string filename, void * owner)
     {
-        filename = resource_dir + filename;
+    	Image I;
+    	I.filename = filename;
+    	I.owner = owner;
+    	return get_image(I);
+    }
+
+    SDL_Surface* cResourceManager::
+    get_image(Image I)
+    {
+        std::string  filename = resource_dir + I.filename;
 
         SDL_Surface * loaded;
         SDL_Surface * copy;
-        std::map<std::string,SDL_Surface*>::iterator iter = images.find(filename);
+        std::map<Image,SDL_Surface*>::iterator iter = images.find(I);
+        //If it's not the first time owner requests an image:
         if(iter != images.end())
         {
             return iter->second;
         }
+        //If it's the first time:
         else
         {
             SDL_Surface *loadedImage = NULL;
@@ -33,16 +44,16 @@ namespace Interface
                 throw exception::custom(IMG_GetError());
             }
 
-            images[filename] = optimizedImage;
+            images[I] = optimizedImage;
 
             return optimizedImage;
         }
     }
 
     void cResourceManager::
-    release_image(std::string filename)
+    release_image(Image I)
     {
-        std::map<std::string,SDL_Surface*>::iterator iter = images.find(filename);
+        std::map<Image,SDL_Surface*>::iterator iter = images.find(I);
         if(iter != images.end())
         {
             SDL_FreeSurface(iter->second);
@@ -54,7 +65,7 @@ namespace Interface
     clean_up()
     {
         // Clear loaded image surfaces
-        std::map<std::string,SDL_Surface*>::iterator image_iter;
+        std::map<Image,SDL_Surface*>::iterator image_iter;
         for(image_iter = images.begin(); image_iter != images.end(); ++image_iter)
         {
             SDL_FreeSurface(image_iter->second);
@@ -69,6 +80,15 @@ namespace Interface
         }
 
         fonts.clear();
+    }
+
+    TTF_Font* cResourceManager::
+    get_font(std::string filename, int size)
+    {
+    	Font F;
+    	F.filename = filename;
+    	F.size = size;
+    	return get_font(F);
     }
 
     TTF_Font* cResourceManager::

@@ -4,9 +4,9 @@
     #include <stdlib.h>
 #endif
 #ifdef __APPLE__
-#include <SDL/SDL.h>
+	#include <SDL/SDL.h>
 #else
-#include <SDL/SDL.h>
+	#include <SDL/SDL.h>
 #endif
 
 #include <iostream>

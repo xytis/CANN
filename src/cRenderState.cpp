@@ -33,9 +33,10 @@ namespace Interface
     void cRenderState::
     init()
     {
-        background = m_controler->resources.get_image("background.png");
+        background = m_controler->resources.get_image("background.png", this);
 
         m_objects.push_back(new cRedBlock(m_controler));
+        //m_objects.push_back(new cWorld(m_controler));
 
         resume();
     }

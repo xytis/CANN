@@ -28,13 +28,18 @@ namespace Interface
         int size;               /*!< Font size */
     };
 
+    struct Image
+    {
+    	std::string filename;
+    	void * owner;
+    };
+
     //! Class for std::map to compare two Font classes.
     /*!
      Class with () operator overridden used for std::map to sort on.
      Checks filename alphabetically, if it's the same filename it then
      uses the size property for comparison.
     */
-
     struct FontCompare
     {
         //! Returns True if f1 is evaluated less than f2
@@ -56,17 +61,33 @@ namespace Interface
         }
     };
 
+    struct ImageCompare
+    {
+    	bool operator()(Image i1, Image i2)
+    	{
+    		int cres = strcmp(i1.filename.c_str(), i2.filename.c_str());
+			if(cres < 0)
+				return true;
+			else if(cres > 0)
+				return false;
+			else
+				return (i1.owner < i2.owner);
+    	}
+    };
+
     class cResourceManager
     {
         private:
             std::map<Font, TTF_Font*,FontCompare> fonts;
-            std::map<std::string, SDL_Surface*> images;
+            std::map<Image, SDL_Surface*, ImageCompare> images;
             std::string resource_dir;
         public:
             cResourceManager(std::string dir):resource_dir(dir) {};
-            SDL_Surface* get_image(std::string);
+            SDL_Surface* get_image(std::string filename, void * owner);
+            SDL_Surface* get_image(Image);
+            TTF_Font* get_font(std::string filename, int size);
             TTF_Font* get_font(Font);
-            void release_image(std::string);
+            void release_image(Image);
             void release_font(Font);
             void clean_up();
     };

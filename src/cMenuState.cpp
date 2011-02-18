@@ -46,7 +46,7 @@ namespace Interface
     void cMainMenu::
     init()
     {
-        background = m_controler->resources.get_image("background.png");
+        background = m_controler->resources.get_image("background.png", this);
         resume();
     }
 
@@ -105,7 +105,7 @@ namespace Interface
     void cPreferencesMenu::
     init()
     {
-        background = m_controler->resources.get_image("background.png");
+        background = m_controler->resources.get_image("background.png", this);
         resume();
     }
 
@@ -271,7 +271,7 @@ namespace Interface
     {
         if(m_active_surface == NULL)
         {
-            m_active_surface = m_controler->resources.get_image("button_active.png");
+            m_active_surface = m_controler->resources.get_image("button_active.png", this);
         }
         return m_active_surface;
     }
@@ -291,7 +291,7 @@ namespace Interface
     {
         if(m_inactive_surface == NULL)
         {
-            m_inactive_surface = m_controler->resources.get_image("button_idle.png");
+            m_inactive_surface = m_controler->resources.get_image("button_idle.png", this);
         }
         return m_inactive_surface;
     }

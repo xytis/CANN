@@ -1,4 +1,14 @@
 ********************************************************************************
+**                              How to start?                                 **
+********************************************************************************
+  Projektas yra pastatytas ant CMake sistemos. Norėdami naudoti IDE reikia
+sukurti atitinkamą projektą. Dabar CMake palaiko Code::Blocks, Eclipse ir KDevelop3.
+NOrėdami sukurti projektą naudokitė šiomis komandomis:
+  cmake -G "CodeBlocks - Unix Makefiles" .
+  cmake -G "Eclipse CDT4 - Unix Makefiles" .
+  cmake -G "Kdevelop3" .
+
+********************************************************************************
 **                                  CANN                                      **
 ********************************************************************************
 Cikliniai tinklai pagrįsti nenutrūkstamu signalų interpretavimu. Priešingai nei 
