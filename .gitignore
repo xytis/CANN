@@ -1,17 +1,22 @@
 #Git ignore file
 !.gitignore
 
+#Files that are part of IDE
+.project
+.cproject
+*.kdev4
+*.cbp
+*.depend
+*.layout
 CMakeFiles/
 CMakeCache.txt
 Makefile
 *.cmake
-
-*.depend
-*.layout
-
+#Build files
 build/
 bin/
 obj/
+#Run Junk
 dumps/
 *.save
 moc_*
