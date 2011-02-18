@@ -61,6 +61,7 @@
 		<Unit filename="include/sigma.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/cBrain.cpp" />
+		<Unit filename="src/cCreature.cpp" />
 		<Unit filename="src/cMainControler.cpp" />
 		<Unit filename="src/cMenuState.cpp" />
 		<Unit filename="src/cMover.cpp" />

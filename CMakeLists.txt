@@ -13,6 +13,7 @@ include_directories(
 set(
     CANN_SOURCES
     src/cBrain.cpp
+    src/cCreature.cpp
     src/cMainControler.cpp
     src/cMenuState.cpp
     src/cMover.cpp
@@ -20,6 +21,8 @@ set(
     src/cRenderState.cpp
     src/cResourceManager.cpp
     src/cSensor.cpp
+    src/cThread.cpp
+    src/cWindow.cpp
     src/sdl_video.cpp
     main.cpp
 )

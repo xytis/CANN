@@ -22,6 +22,8 @@
 #include "include/cMenuState.h"
 #include "include/cRenderState.h"
 
+#include "include/cCreature.h"
+
 int main ( int argc, char** argv )
 {
 /*
@@ -123,6 +125,8 @@ int main ( int argc, char** argv )
         std::cout << IO.at(0) << ' ' << IO.at(1) << std::endl;
     }
 */
+    cCreature bob;
+
     Interface::cMainControler * program = Interface::cMainControler::create();
     program->init("hello", 640, 480, 32);
     Interface::cMenuState * menu = new Interface::cMainMenu(program);
