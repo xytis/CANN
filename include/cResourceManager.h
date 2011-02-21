@@ -12,6 +12,8 @@
 #include <map>
 #include <iostream>
 
+#include <algorithm>
+
 /**
     TODO:
         Reikia kad cResourceManager slėptų nuo programos visus veiksmus susijusius su failais.
@@ -75,6 +77,19 @@ namespace Interface
     	}
     };
 
+    struct OwnerCompare
+    {
+    	void * owner;
+    	bool compare(Image i)
+    	{
+    		return i.owner == owner;
+    	}
+    	bool compare(Font f)
+    	{
+    		return false;
+    	}
+    };
+
     class cResourceManager
     {
         private:
@@ -87,6 +102,7 @@ namespace Interface
             SDL_Surface* get_image(Image);
             TTF_Font* get_font(std::string filename, int size);
             TTF_Font* get_font(Font);
+            void release_by_owner(void * owner);
             void release_image(Image);
             void release_font(Font);
             void clean_up();

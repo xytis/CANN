@@ -82,6 +82,21 @@ namespace Interface
         fonts.clear();
     }
 
+    void cResourceManager::
+    release_by_owner(void * owner)
+    {
+    	/*
+    	OwnerCompare c;
+    	c.owner = owner;
+    	std::map<Image,SDL_Surface*>::iterator image_iter;
+    	while ((image_iter = find_if(images.begin(), images.end(), c.compare)) != images.end())
+    	{
+    		SDL_FreeSurface(image_iter->second);
+    		images.erase(image_iter, ++image_iter);
+    	}
+    	*/
+    }
+
     TTF_Font* cResourceManager::
     get_font(std::string filename, int size)
     {

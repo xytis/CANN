@@ -1,11 +1,14 @@
 #include "../include/cCreature.h"
+#include "../include/cRenderObject.h"
+
+
 
 namespace CANN
 {
-
+/*
     cCreature::
-    cCreature(cMainControler * controler):
-    cRenderObject(controler)
+    cCreature(Interface::cMainControler * controler):
+    Interface::cRenderObject(controler)
     {
         load_sprite("red_cube.png");
         box.h = 50;
@@ -18,5 +21,5 @@ namespace CANN
         add_clip(std::string("default"),n_clip);
         set_state("default");
     }
-
+*/
 };

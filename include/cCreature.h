@@ -14,16 +14,30 @@
 
 namespace CANN
 {
+
+
     class cCreature : public Interface::cRenderObject
     {
         private:
+			friend class cActivity;
+
             //The parts of an animal. Doah.
             cBrain  * brain;
             cMover  * mover;
             std::vector<cPeripheral *> sensors_n_bridges;
-            std::queue<cActivity *> todo;
+            //std::queue<cActivity *> todo;
+
+
+        	class cActivity
+        	{
+				protected:
+					cCreature	* owner;
+				public:
+					virtual void resolve() = 0;
+        	};
+
         public:
-            cCreature(Interface::cMainControler *);
+            //cCreature(Interface::cMainControler *);
             void process();
             //Should have all the methods as render object here
     };
