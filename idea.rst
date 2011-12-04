@@ -16,11 +16,11 @@ Network is fully described by set of threshold values T, and matrix of connectio
 
 ----
 
-| For example, a network of four neurons:
-| +---+---+
-| | A | B |
-| +---+---+
-| | C | D |
-| +---+---+
-|
-| The input is given to A and C. Then sending step is executed. Signals are passed to all neurons (including themselves). When the signals are accumulated, neurons might become 'active', if a threshold value is exceeded. Only active neurons send signals during next sending step.
+For example, a network of four neurons:
++---+---+
+| A | B |
++---+---+
+| C | D |
++---+---+
+
+The input is given to A and C. Then sending step is executed. Signals are passed to all neurons (including themselves). When the signals are accumulated, neurons might become 'active', if a threshold value is exceeded. Only active neurons send signals during next sending step.
