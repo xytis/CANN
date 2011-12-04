@@ -1,16 +1,14 @@
-********************************************************************************
-**                              How to start?                                 **
-********************************************************************************
-  Projektas yra pastatytas ant CMake sistemos. Norėdami naudoti IDE reikia
-sukurti atitinkamą projektą. Dabar CMake palaiko Code::Blocks, Eclipse ir KDevelop3.
-NOrėdami sukurti projektą naudokitė šiomis komandomis:
+*************
+How to start?
+*************
+Project is based on CMake system. If You wish to use any IDE, please check CMake man pages if it is supported. Currently these commands work:
   cmake -G "CodeBlocks - Unix Makefiles" .
   cmake -G "Eclipse CDT4 - Unix Makefiles" .
   cmake -G "Kdevelop3" .
 
-********************************************************************************
-**                                  CANN                                      **
-********************************************************************************
+****
+CANN
+****
 Cikliniai tinklai pagrįsti nenutrūkstamu signalų interpretavimu. Priešingai nei 
 paprasti ANN čia vienam signalui pereiti per tinklą gali prireikti daugiau nei 
 vieno perrinkimo. Tai yra lėtesnis būdas, tačiau atmintis šiuose tinkluose eg-
