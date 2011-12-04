@@ -17,9 +17,10 @@ Network is fully described by set of threshold values T, and matrix of connectio
 ----
 
 For example, a network of four neurons:
+
 +---+---+
 | A | B |
-+---+---+
++===+===+
 | C | D |
 +---+---+
 
