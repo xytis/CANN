@@ -1,6 +1,11 @@
 #ifndef CRANDOMPOOL_H_INCLUDED
 #define CRANDOMPOOL_H_INCLUDED
 
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+
 namespace CANN
 {
     class cRandomPool
@@ -9,18 +14,23 @@ namespace CANN
             unsigned long long m_seed;
             //Mutation boundaries.
         public:
-            cRandomPool() {};
-            cRandomPool(unsigned long long seed) {};
+            cRandomPool();
+            cRandomPool(unsigned long long seed);
 
-            double  mutation() {return 0.99;};
-            double  get_random() {return 1;};
-            double  get_random_in(double a,  double b) {return 1;};
+            double  get_random();
+            double  get_random_in(double a,  double b);
 
-            double  fresh_link() {return 0.25;};
-            double  fresh_stiffness() {return 1;};
-            double  fresh_threshold() {return 0.5;};
+            double  fresh_link();
+            double  fresh_stiffness();
+            double  fresh_threshold();
 
-            unsigned long long get_seed() {return m_seed;};
+            double  mutate_link();
+            double  mutate_stiffness();
+            double  mutate_threshold();
+
+            unsigned long long get_seed() { return m_seed; };
+
+            unsigned generate_ID(unsigned generation);
     };
 };
 

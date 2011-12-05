@@ -11,6 +11,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+
+#include "include/cBrain.h"
+#include "include/cNeuron.h"
+#include "include/cRandomPool.h"
+#include "include/cSpotCreature.h"
+
 /*
 #include "include/cBrain.h"
 #include "include/cSensor.h"
@@ -18,14 +25,139 @@
 #include "include/cNeuron.h"
 #include "include/cRandomPool.h"
 */
+/*
 #include "include/cMainControler.h"
 #include "include/cMenuState.h"
 #include "include/cRenderState.h"
 
 #include "include/cCreature.h"
+*/
+void decrease(double & number, double amount)
+{
+    number -= amount;
+    if (number < 0.0)
+    {
+        number = 0.0;
+    }
+}
+
+int evaluate(CANN::cSpotCreature & spotty, CANN::cRandomPool & pool)
+{
+    double food;
+    int score = 0;
+    food = pool.get_random_in(0.0, 1.0);
+    
+    for (int i = 0; i < 100; i++)
+    {
+        spotty.input(food);
+        spotty.think();
+        if (spotty.output() > 0.5)
+        {
+            //Good to move away from scarse location
+            if (food < 0.5)
+            {
+                score++;
+            }
+            else
+            {
+                score--;
+            }
+            food = pool.get_random_in(0.0, 1.0);
+        }
+        else
+        {
+            //Bad to stay at scarse location
+            if (food < 0.5)
+            {
+                score--;
+            }
+            else
+            {
+                score++;
+            }
+        }
+        decrease(food, 0.1);
+    }
+    
+    return score;
+}
+
+std::vector<CANN::cSpotCreature> initial_generation(CANN::cRandomPool & pool)
+{
+    std::vector<CANN::cSpotCreature> spots;
+    for (int i = 0; i < 100; i++)
+    {
+        CANN::cSpotCreature spotty(pool, 5, pool.generate_ID(0));
+        spots.push_back(spotty);
+    }
+    return spots;
+}
+
+std::vector<CANN::cSpotCreature> create_generation(CANN::cSpotCreature & father, CANN::cRandomPool & pool)
+{
+    std::vector<CANN::cSpotCreature> spots;
+    for (int i = 0; i < 100; i++)
+    {
+        CANN::cSpotCreature spotty(father, pool);
+        spots.push_back(spotty);
+    }
+    return spots;
+}
 
 int main ( int argc, char** argv )
 {
+    CANN::cRandomPool random(1);
+
+    std::vector<CANN::cSpotCreature> spots;
+    spots = initial_generation(random);
+
+    CANN::cSpotCreature best(random, 4, 0);
+
+    for (int gen = 0; gen < 1000; gen++)
+    {
+        int best_score = -101;
+        int best_spot = -1;
+        double sum = 0;
+        for (int i = 0; i< 100; i++)
+        {
+            int score = evaluate(spots[i], random);
+            sum += score;
+            if (best_score < score)
+            {
+                best_score = score;
+                best_spot = i;
+            }
+        }
+        std::cout << "Generation: " << gen << " Best score: " << best_score << " Average: " << sum/100 << std::endl;
+        best = spots[best_spot];
+        spots = create_generation(best, random);
+    }
+
+    std::ofstream fout("best.gen");
+    best.genome(fout);
+
+    return 0;
+}
+/*
+    CANN::cRandomPool random(1);
+    CANN::cBrain brainiac(random, 10, "MAIN");
+    CANN::cNeuron * input, * output;
+
+    input = brainiac.at(1);
+    output = brainiac.at(2);
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (i < 20)
+            input->get(i%3);
+        brainiac.send();
+        brainiac.flip();
+        std::cout << output->let() << std::endl;
+    }
+
+    return 0;
+}
+*/
 /*
     std::map<unsigned,CANN::cNeuron*> map;
     std::map<unsigned,CANN::cNeuron*> map2;
@@ -125,6 +257,7 @@ int main ( int argc, char** argv )
         std::cout << IO.at(0) << ' ' << IO.at(1) << std::endl;
     }
 */
+/*
     Interface::cMainControler * program = Interface::cMainControler::create();
     program->init("hello", 640, 480, 32);
     Interface::cMenuState * menu = new Interface::cMainMenu(program);
@@ -133,7 +266,7 @@ int main ( int argc, char** argv )
     //program->push(render);
     program->run();
     program->clean_up();
-
+*/
 /*
     // initialize SDL video
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -213,6 +346,7 @@ int main ( int argc, char** argv )
 
     // all is well ;)
     printf("Exited cleanly\n");
-    */
+    
     return 0;
 }
+*/

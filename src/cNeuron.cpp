@@ -80,15 +80,15 @@ namespace CANN
         std::map<cNeuron *,double>::iterator iter;
         for( iter = (*connections).begin(); iter != (*connections).end(); ++iter )
         {
-            iter->second *= R.mutation();
+            iter->second += R.mutate_link();
         }
     }
 
     void cNeuron::
     mutate_core(cRandomPool & R)
     {
-        m_core->m_threshold *= R.mutation();
-        m_core->m_stiffness *= R.mutation();
+        m_core->m_threshold += R.mutate_threshold();
+        m_core->m_stiffness += R.mutate_stiffness();
     }
 
     void cNeuron::

@@ -41,11 +41,12 @@ namespace CANN
             {
                 in >> label;
                 if (label != "cBrain")
-                    throw exception::custom("Wrong type of stream data!");
+                    throw exception::Fatal("Stream filled with wrong type of data!");
             }
             if (label == "ID")
             {
-                in >> m_ID;
+                in.ignore('\t');
+                std::getline(in, m_ID);
             }
             if (label == "SIZE")
             {
@@ -69,7 +70,6 @@ namespace CANN
                 }
 
             }
-
         }
     }
 
@@ -83,6 +83,17 @@ namespace CANN
         for (unsigned u = 0; u < m_size; u++)
         {
             out << (neurons->find(u)->second)->get_genome() << std::endl;
+        }
+    }
+
+    void cBrain::
+    mutate(cRandomPool & pool)
+    {
+        std::map<unsigned,cNeuron *>::iterator iter;
+        for( iter = (*neurons).begin(); iter != (*neurons).end(); ++iter )
+        {
+            iter->second->mutate_links(pool);
+            iter->second->mutate_core(pool);
         }
     }
 

@@ -1,3 +1,6 @@
+1. Pakeisti iš stack alokacijos dabartiname main.cpp į heap su savu resursų atlaisvinimu.
+
+================================================================================
 
 1. Kol kas reikia sugalvoti ir padaryti saugų ir efektyvų būdą dalintis neuronais tarp
 cBrain ir cSensor (ar cMover ar cBrain). Kitaip tariant, kaip padaryti kad neuronas būtų

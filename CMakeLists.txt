@@ -6,28 +6,17 @@ Find_Package ( SDL REQUIRED )
 Find_Package ( SDL_image REQUIRED )
 Find_Package ( SDL_ttf REQUIRED )
 
+
+file(GLOB PROJECT_SRC
+    "include/*.h"
+    "src/*.cpp"
+    "main.cpp"
+)
+
 include_directories(
     ${CANN_SOURCE_DIR}/include
 )
 
-set(
-    CANN_SOURCES
-    src/cBrain.cpp
-    src/cCreature.cpp
-    src/cMainControler.cpp
-    src/cMenuState.cpp
-    src/cMover.cpp
-    src/cNeuron.cpp
-    src/cRenderState.cpp
-    src/cResourceManager.cpp
-    src/cThread.cpp
-    src/cWindow.cpp
-    src/cSensor.cpp
-    src/cThread.cpp
-    src/cWindow.cpp
-    src/sdl_video.cpp
-    main.cpp
-)
 
 if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
@@ -37,7 +26,7 @@ set(CMAKE_CXX_FLAGS_Debug "-g")
 
 set(CMAKE_CXX_FLAGS_Release "-O2 -DNDEBUG")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CANN_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE})
 
 message(STATUS "CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}:${CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}}")
 
@@ -49,5 +38,5 @@ link_libraries(
 
 add_executable(
     CANN
-    ${CANN_SOURCES}
+    ${PROJECT_SRC}
 )

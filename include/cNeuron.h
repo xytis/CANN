@@ -41,7 +41,7 @@ namespace CANN
             /**
             *   Gives neurons a place to be =]
             *   Actualy it registers ID address pair of given neuron
-            *   \param map[ID]=address
+            *   \param std::map<unsigned,cNeuron*> map[ID] = address
             */
             void        register_to (std::map<unsigned,cNeuron*> &);
 
@@ -53,15 +53,20 @@ namespace CANN
 
             /**
             *   Sets threshold and stiffness
+            *   \param double threshold
+            *   \param double stiffness
             */
             void        init(double, double);
 
             /**
             *   Creates an active link with a weight
+            *   \param cNeuron with which to link
+            *   \param double weight
             */
             void        link (cNeuron &, double);
             /**
             *   Deletes a link
+            *   \param cNeuron to unlink from which
             */
             void        unlink (cNeuron &);
 
@@ -72,7 +77,7 @@ namespace CANN
             std::string get_genome();
             /**
             *   Loads genome from formated string.
-            *   \param genome
+            *   \param std::string genome
             */
             void        set_genome (std::string);
 
@@ -90,10 +95,12 @@ namespace CANN
 
             /**
             *   Receives signals
+            *  \param double signal
             */
             void        get(double);
             /**
             *   Shows current signal
+            *   \return current signal value
             */
             double      let()   { return m_core->m_signal;};
             /**

@@ -1,10 +1,10 @@
 *************
 How to start?
-*************
+
 Project is based on CMake system. If You wish to use any IDE, please check CMake man pages if it is supported. Currently these commands work:
-  cmake -G "CodeBlocks - Unix Makefiles" .
-  cmake -G "Eclipse CDT4 - Unix Makefiles" .
-  cmake -G "Kdevelop3" .
+-  cmake -G "CodeBlocks - Unix Makefiles" .
+-  cmake -G "Eclipse CDT4 - Unix Makefiles" .
+-  cmake -G "Kdevelop3" .
 
 ****
 CANN
