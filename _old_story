@@ -1,3 +1,4 @@
+ 
 ********************************************************************************
 **                              How to start?                                 **
 ********************************************************************************
@@ -20,14 +21,14 @@ Tikslai: Per vasarą parašyti pirmą veikiantį tinklą ir jį išbandyti su pa
 simuliacija.
 
 Simuliacijos aprašas:
-	CANN tinklo valdomas kvadratėlis egzistuoja gradientiškai palankioje
-	aplinkoje. Aplinkos palankumo koeficientas duodama kaip vienintelė įves-
-	tis. Išvestis -- vienas skaičius, teigiamas arba neigiamas, greitis
-	kuriuo kvadratėlis juda pasaulyje. (pasaulis 1 dimensijos.) Pritaikius 
-	genetinį algoritmą išvesti veislę, kuri laikytųsi palankiuose taškuose.
-	(Čia pagal vienaląsčių elgesį jiem nepalankioje terpėje.)
-	Išsivystymo taškai skaičiuojami pagal laiką praleistą palankioj vietoj, 
-	laiką praleistą blogoje erdvėje, judrumą blogoje erdvėje.
+        CANN tinklo valdomas kvadratėlis egzistuoja gradientiškai palankioje
+        aplinkoje. Aplinkos palankumo koeficientas duodama kaip vienintelė įves-
+        tis. Išvestis -- vienas skaičius, teigiamas arba neigiamas, greitis
+        kuriuo kvadratėlis juda pasaulyje. (pasaulis 1 dimensijos.) Pritaikius 
+        genetinį algoritmą išvesti veislę, kuri laikytųsi palankiuose taškuose.
+        (Čia pagal vienaląsčių elgesį jiem nepalankioje terpėje.)
+        Išsivystymo taškai skaičiuojami pagal laiką praleistą palankioj vietoj, 
+        laiką praleistą blogoje erdvėje, judrumą blogoje erdvėje.
 Paturbintas aprašas:
   Vieną vakarą, sėdėdamas sugalvojau kad viskas gali vyktį šešiakampių plokštelių
   pasaulyje. Tai atneštų privalumų "gyvybės" organizavimui, bei jos gebėjimams.
