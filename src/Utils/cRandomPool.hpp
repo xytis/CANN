@@ -15,7 +15,16 @@ public:
   cRandomPool();
   cRandomPool(unsigned long long seed);
   
+  /**
+   * Returns random in range [0,1]
+   * @return random number
+   */
   double  get_random();
+  /**
+   * Returns random in range [a,b]
+   * @params a,b -- range
+   * @return random number
+   */
   double  get_random_in(double a,  double b);
   
   double  fresh_link();
