@@ -5,16 +5,31 @@ project(CANN)
 Find_Package ( SDL REQUIRED )
 Find_Package ( SDL_image REQUIRED )
 Find_Package ( SDL_ttf REQUIRED )
+Find_Package ( Boost COMPONENTS serialization system filesystem REQUIRED )
 
+set(CANN_SOURCE_DIR "src")
 
-file(GLOB PROJECT_SRC
-    "include/*.h"
-    "src/*.cpp"
-    "main.cpp"
-)
+#Special macro for easy including of sources
+macro (add_sources)
+    file (RELATIVE_PATH _relPath "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+    foreach (_src ${ARGN})
+        if (_relPath)
+            list (APPEND SRCS "${_relPath}/${_src}")
+        else()
+            list (APPEND SRCS "${_src}")
+        endif()
+    endforeach()
+    if (_relPath)
+        # propagate SRCS to parent directory
+        set (SRCS ${SRCS} PARENT_SCOPE)
+    endif()
+endmacro()
+
+add_subdirectory( ${CANN_SOURCE_DIR} )
 
 include_directories(
-    ${CANN_SOURCE_DIR}/include
+    ${CANN_SOURCE_DIR}
+    ${Boost_INCLUDE_DIR}
 )
 
 
@@ -28,6 +43,8 @@ set(CMAKE_CXX_FLAGS_Release "-O2 -DNDEBUG")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE})
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x") 
+
 message(STATUS "CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}:${CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}}")
 
 link_libraries(
@@ -38,5 +55,5 @@ link_libraries(
 
 add_executable(
     CANN
-    ${PROJECT_SRC}
+    ${SRCS}
 )
