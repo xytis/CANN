@@ -21,10 +21,10 @@ namespace exception
         ~kill_event () throw () {}
     };
 
-    class SDLexception: public std::exception
+    class SDLException: public std::exception
     {
     public:
-        enum SDLexceptionType
+        enum SDLExceptionType
         {
             VIDEO   =   0,
             INIT,
@@ -33,9 +33,9 @@ namespace exception
         };
     private:
         std::string m_reason;
-        SDLexceptionType    m_type;
+        SDLExceptionType    m_type;
     public:
-        SDLexception(std::string reason, SDLexceptionType type) throw():
+        SDLException(std::string reason, SDLExceptionType type) throw():
         m_reason(reason),
         m_type(type)
         {
@@ -44,11 +44,11 @@ namespace exception
         {
             return m_reason.c_str();
         }
-        const SDLexceptionType type() const throw()
+        const SDLExceptionType type() const throw()
         {
             return m_type;
         }
-        ~SDLexception () throw () {}
+        ~SDLException () throw () {}
     };
 
     class InstanceException: public std::exception

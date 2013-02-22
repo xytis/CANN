@@ -26,11 +26,27 @@ namespace Interface
     class cResourceManager;
     class cWindow;
 
+    /**
+     * Main Controler of graphical application. Responsible for state swithching, resource loading and unloading.
+     * Also interacts with SDL and polls SDL events. Each event can be resolved using supplied resolver.
+     * 
+     * Implemented as singleton object. Can be reached from anywhere within the program.
+     */
     class cMainControler
     {
         public:
+            /**
+             * 
+             * @return currently initialized instance pointer.
+             */
             static  cMainControler * instance();
 
+            /**
+             * Creates and returns new main controler. Should be called once in a program.
+             * Any subsequent calls will assert.
+             * 
+             * @return fresh cMainControler.
+             */
             static  cMainControler * create();
 
             void    init(std::string title, int width, int height, int bpp);

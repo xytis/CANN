@@ -15,7 +15,7 @@ namespace Interface
         if( screen == NULL )
         {
             windowOK = false;
-            throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
+            throw exception::SDLException(SDL_GetError(), exception::SDLException::SURFACE);
         }
 
         windowed = true;
@@ -38,7 +38,7 @@ namespace Interface
             if( screen == NULL )
             {
                 windowOK = false;
-                throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
+                throw exception::SDLException(SDL_GetError(), exception::SDLException::SURFACE);
             }
 
             //Set the window state flag
@@ -54,7 +54,7 @@ namespace Interface
             if( screen == NULL )
             {
                 windowOK = false;
-                throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
+                throw exception::SDLException(SDL_GetError(), exception::SDLException::SURFACE);
             }
 
             //Set the window state flag
@@ -73,7 +73,7 @@ namespace Interface
         if( m_caller->screen == NULL )
         {
             m_caller->windowOK = false;
-            throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
+            throw exception::SDLException(SDL_GetError(), exception::SDLException::SURFACE);
         }
         return true;
     }
@@ -130,7 +130,7 @@ namespace Interface
         {
             //If there's an error
             m_caller->windowOK = false;
-            throw exception::SDLexception(SDL_GetError(), exception::SDLexception::SURFACE);
+            throw exception::SDLException(SDL_GetError(), exception::SDLException::SURFACE);
         }
         return true;
     }

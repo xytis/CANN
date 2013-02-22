@@ -1,22 +1,23 @@
 #include "cMainControler.hpp"
 
+#include <cassert>
+
 namespace Interface
 {
-    cMainControler* cMainControler::m_instance = NULL;
+    cMainControler* cMainControler::m_instance = nullptr;
 
     cMainControler* cMainControler::
     instance()
     {
-        if (!m_instance)
-            throw exception::InstanceException("Instance NOT initialised!");
+        assert(m_instance != nullptr);
         return m_instance;
     }
 
     cMainControler* cMainControler::
     create()
     {
-        if (!m_instance)
-            m_instance = new cMainControler();
+        assert(m_instance == nullptr);
+        m_instance = new cMainControler();
         return instance();
     }
 
@@ -25,7 +26,7 @@ namespace Interface
     {
         if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
-            throw exception::SDLexception(SDL_GetError(), exception::SDLexception::INIT);
+            throw exception::SDLException(SDL_GetError(), exception::SDLException::INIT);
         }
 
         m_window = new cWindow(this);
@@ -35,7 +36,7 @@ namespace Interface
 
         if(TTF_Init() == -1)
         {
-            throw exception::SDLexception(TTF_GetError(), exception::SDLexception::TTF);
+            throw exception::SDLException(TTF_GetError(), exception::SDLException::TTF);
         }
 
         running = true;
