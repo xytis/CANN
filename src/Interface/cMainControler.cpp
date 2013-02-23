@@ -109,7 +109,7 @@ namespace Interface
         }
         SDL_FreeSurface(screen);
 
-        resources.clean_up();
+        resources.CleanUp();
         m_event_resolvers.clear();
         SDL_Quit();
 

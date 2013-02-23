@@ -1,5 +1,89 @@
 #include "cResourceManager.hpp"
 
+#include <sstream>
+
+#include "Interface/Resources/Loaders/cTextureResourceLoader.hpp"
+
+using namespace Interface;
+
+cResourceManager::cResourceManager(std::string root_path)
+: m_resources()
+, m_root_path(root_path)
+, m_frame(0) {
+    //Create resource arrays:
+    m_resources.resize((size_t) eResourceType::_count);
+    
+    
+}
+
+cResourceManager::~cResourceManager() {
+    CleanUp();
+}
+
+void cResourceManager::clean_this_frame() {
+    //For each resource type:
+    for (resource_map & map : m_resources) {
+        //Go through map one by one, and check if object is from this frame. If so -- release it.
+        //Note, it may raise Fatal error, if trying to pop resources that are still referenced.
+        for (auto it = map.begin(); it != map.end();)
+            resource_pair & pair = (*it);
+            if (pair.second->InFrame(m_frame)) {
+                delete pair.second;
+                pair.second = nullptr;
+                it = map.erase(it);
+            } else {
+                ++it;
+            }   
+        }
+    }
+}
+
+void cResourceManager::Register(std::string id, cResourceLoaderBase * loader, bool force_load) {
+    //Check for id duplication:
+    auto search = container(type).find(id);
+    if (search != container(type).end()) {
+        std::stringstream error;
+        error << "Duplicate resource ID: " << id;
+        throw exception::Fatal(error.str());
+    }
+    
+    //Do force loading
+    if (force_load) {
+        loader->Load();
+    }
+    
+    //Save.
+    container(type).insert(resource_pair(id,loader));
+}
+
+void cResourceManager::PushFrame() noexcept {
+    ++m_frame;
+}
+
+void cResourceManager::PopFrame() throw(exception::Fatal) {
+    clean_this_frame();
+    --m_frame;
+    if (m_frame < 0) {
+        throw (exception::Fatal("Trying to pop empty resource manager!"));
+    }
+}
+
+int cResourceManager::CurrentFrame() const noexcept {
+    return m_frame;
+}
+
+void cResourceManager::CleanUp() {
+    //Go through all frames and pop them.
+    while (m_frame >= 0) {
+        clean_this_frame();
+        --m_frame;
+    }
+}
+
+
+
+
+/*
 namespace Interface
 {
     SDL_Surface* cResourceManager::
@@ -85,16 +169,16 @@ namespace Interface
     void cResourceManager::
     release_by_owner(void * owner)
     {
-    	/*
-    	OwnerCompare c;
-    	c.owner = owner;
-    	std::map<Image,SDL_Surface*>::iterator image_iter;
-    	while ((image_iter = find_if(images.begin(), images.end(), c.compare)) != images.end())
-    	{
-    		SDL_FreeSurface(image_iter->second);
-    		images.erase(image_iter, ++image_iter);
-    	}
-    	*/
+    	
+        OwnerCompare c;
+        c.owner = owner;
+        std::map<Image,SDL_Surface*>::iterator image_iter;
+        while ((image_iter = find_if(images.begin(), images.end(), c.compare)) != images.end())
+        {
+                SDL_FreeSurface(image_iter->second);
+                images.erase(image_iter, ++image_iter);
+        }
+    	
     }
 
     TTF_Font* cResourceManager::
@@ -133,3 +217,4 @@ namespace Interface
     }
 
 };
+*/
