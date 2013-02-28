@@ -1,4 +1,5 @@
 #include "cMenuState.hpp"
+#include "Resources/Types/cTextureResource.hpp"
 
 namespace Interface
 {
@@ -105,7 +106,7 @@ namespace Interface
     void cPreferencesMenu::
     init()
     {
-        background = m_controler->resources.get_image("background.png", this);
+        background = m_controler->resources.Get<cTextureResource>("background");
         resume();
     }
 

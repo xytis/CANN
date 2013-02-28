@@ -19,7 +19,7 @@ namespace Interface
         public:
             virtual ~cMenuItem();
 
-            void init(std::string text, cMainControler* controler, Font font, SDL_Rect box);
+            void init(std::string text, cMainControler* controler,  Font font, SDL_Rect box);
             virtual void action() = 0;
             SDL_Surface* get_active_surface();
             SDL_Surface* get_inactive_surface();

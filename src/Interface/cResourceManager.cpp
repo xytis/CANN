@@ -12,8 +12,9 @@ cResourceManager::cResourceManager(std::string root_path)
 , m_frame(0) {
     //Create resource arrays:
     m_resources.resize((size_t) eResourceType::_count);
-    
-    
+    //Load any resources listed in this directory.
+    //For each directory, do the same if ResourceList.txt exists.
+    Load(m_root_path);    
 }
 
 cResourceManager::~cResourceManager() {
